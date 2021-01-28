@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/PlayerControl/PlayerControl.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/PlayerControl/ThirdPersonCamera.gd" type="Script" id=2]
+[ext_resource path="res://Materials/TEST.tres" type="Material" id=3]
+
+[sub_resource type="Environment" id=1]
+ambient_light_color = Color( 0.862745, 0.862745, 0.862745, 1 )
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.193086
+height = 0.276767
+
+[node name="Testing" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+use_collision = true
+width = 7.11853
+height = 0.183617
+depth = 8.51222
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00405, 0 )
+script = ExtResource( 1 )
+moveSpeed = 1.0
+runSpeed = 2.0
+airMoveSpeed = 1.0
+acceleration = 10.0
+cameraPivotPath = NodePath("../ThirdPersonCamera")
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="_VIS" type="Spatial" parent="Player"]
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Player/_VIS"]
+radius = 0.171464
+height = 0.635266
+material = ExtResource( 3 )
+
+[node name="ThirdPersonCamera" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00459, 0 )
+script = ExtResource( 2 )
+moveSpeed = 10.0
+pivotObjectPath = NodePath("../Player")
+minYAngle = -60.0
+maxYAngle = 50.0
+
+[node name="SpringArm" type="SpringArm" parent="ThirdPersonCamera"]
+spring_length = 1.5
+
+[node name="Offset" type="Spatial" parent="ThirdPersonCamera/SpringArm"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="ThirdPersonCamera/SpringArm/Offset"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
