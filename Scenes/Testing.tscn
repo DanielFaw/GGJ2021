@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/PlayerControl/PlayerControl.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/PlayerControl/ThirdPersonCamera.gd" type="Script" id=2]
 [ext_resource path="res://Materials/TEST.tres" type="Material" id=3]
+[ext_resource path="res://Scripts/InventoryAndCrafting/Crafter.cs" type="Script" id=4]
 
 [sub_resource type="Environment" id=1]
 ambient_light_color = Color( 0.862745, 0.862745, 0.862745, 1 )
@@ -41,6 +42,9 @@ shape = SubResource( 2 )
 radius = 0.171464
 height = 0.635266
 material = ExtResource( 3 )
+
+[node name="CrafterScript" type="Spatial" parent="Player"]
+script = ExtResource( 4 )
 
 [node name="ThirdPersonCamera" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00459, 0 )
