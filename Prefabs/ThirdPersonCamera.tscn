@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/PlayerControl/ThirdPersonCamera.gd" type="Script" id=1]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.5
+
+[node name="ThirdPersonCamera" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00459, 0 )
+script = ExtResource( 1 )
+moveSpeed = 10.0
+pivotObjectPath = NodePath("../Player")
+minYAngle = -60.0
+maxYAngle = 50.0
+
+[node name="SpringArm" type="SpringArm" parent="."]
+collision_mask = 2
+shape = SubResource( 1 )
+spring_length = 3.0
+margin = 0.1
+
+[node name="Offset" type="Spatial" parent="SpringArm"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="SpringArm/Offset"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )

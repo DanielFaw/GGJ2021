@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/InventoryAndCrafting/Crafter.cs" type="Script" id=1]
+[ext_resource path="res://Scripts/PlayerControl/PlayerControl.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/VisEffects/PlayerSpriteSwap.gd" type="Script" id=4]
+[ext_resource path="res://Textures/Shadow.png" type="Texture" id=5]
+[ext_resource path="res://sprites/dood-back.png" type="Texture" id=6]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.193086
+height = 0.276767
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.21, 0.1, 0.21 )
+
+[node name="Player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00405, 0 )
+collision_mask = 3
+script = ExtResource( 3 )
+moveSpeed = 1.0
+runSpeed = 2.0
+airMoveSpeed = 1.0
+acceleration = 10.0
+cameraPivotPath = NodePath("../ThirdPersonCamera")
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="_VIS" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138971, 0 )
+
+[node name="PlayerSprite" type="Sprite3D" parent="_VIS"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0268151, 0 )
+billboard = 2
+texture = ExtResource( 6 )
+script = ExtResource( 4 )
+
+[node name="SpringArm" type="SpringArm" parent="_VIS"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.221531, 0 )
+collision_mask = 2
+shape = SubResource( 2 )
+spring_length = 0.5
+
+[node name="Sprite3D" type="Sprite3D" parent="_VIS/SpringArm"]
+transform = Transform( 0.210692, 0, 0, 0, 0.210692, 0, 0, 0, 0.210692, 0, 0, 0 )
+modulate = Color( 0.607843, 0.607843, 0.607843, 0.392157 )
+alpha_cut = 2
+texture = ExtResource( 5 )
+region_rect = Rect2( 1, 1, 1, 1 )
+
+[node name="CrafterScript" type="Spatial" parent="."]
+script = ExtResource( 1 )
