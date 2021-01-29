@@ -29,6 +29,7 @@ var colliding;
 export var animationTreePath:NodePath;
 var animationTree;
 var stateMachine;
+var queueJump = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,6 +40,13 @@ func _ready():
 func _process(delta):
 
 	Utilities.CorrectJitter(delta,direction,visObject,self);
+
+	#Register player jump
+	if(Input.is_action_just_pressed("player_jump") && is_on_floor()):
+		if(!queueJump):
+			queueJump = true;
+		
+
 
 	#Is the camera static (Only a camera)
 	if(cameraStatic):
@@ -72,8 +80,9 @@ func HandleMovementCalculations(delta):
 	#Calculate gravity
 	velocity.y -= delta * gravity;
 
-	if(Input.is_action_just_pressed("player_jump") && is_on_floor()):
+	if(queueJump):
 		velocity.y = jumpPower;
+		queueJump = false;
 
 	#Isolate x and z components
 	var horizontalVelocity = velocity;

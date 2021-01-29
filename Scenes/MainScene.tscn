@@ -5,11 +5,11 @@
 [ext_resource path="res://Prefabs/ThirdPersonCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/Natures/Pine_2.tscn" type="PackedScene" id=4]
 
-[sub_resource type="ProceduralSky" id=2]
+[sub_resource type="ProceduralSky" id=1]
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 2 )
+background_sky = SubResource( 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 1.47
 ambient_light_sky_contribution = 0.0
@@ -22,13 +22,14 @@ ssao_radius = 0.37
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.2417, 0 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 2.21174, 0, 0, 0, 2.21174, 0, 0, 0, 2.21174, 0, 26.9021, 0 )
+transform = Transform( 2.21174, 0, 0, 0, 2.21174, 0, 0, 0, 2.21174, 0, 18.7198, 0 )
+jumpPower = 2.0
 
 [node name="ThirdPersonCamera" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.9033, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3295, 0 )
 
 [node name="Decoration" type="Spatial" parent="."]
 
