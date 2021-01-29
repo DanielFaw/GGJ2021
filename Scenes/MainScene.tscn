@@ -32,9 +32,76 @@ jumpPower = 2.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3295, 0 )
 
 [node name="Decoration" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825576, 0.0586605, -1.54062 )
 
 [node name="Pine_2" parent="Decoration" instance=ExtResource( 4 )]
 transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 9.78001, 17.7415, -0.797464 )
+
+[node name="Pine_3" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 12.5088, 16.1905, 15.9053 )
+
+[node name="Pine_4" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 14.0702, 19.4094, 24.7799 )
+
+[node name="Pine_5" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 22.223, 20.9653, 25.3586 )
+
+[node name="Pine_6" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 22.3391, 18.1131, 18.4365 )
+
+[node name="Pine_7" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 21.5266, 17.4724, 6.4941 )
+
+[node name="Pine_8" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 10.9062, 16.8503, 3.80404 )
+
+[node name="Pine_9" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 33.568, 21.3889, 17.7725 )
+
+[node name="Pine_10" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 13.9488, 16.3464, 6.51807 )
+
+[node name="Pine_11" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 30.1177, 19.142, 8.06737 )
+
+[node name="Pine_12" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 21.0396, 16.8023, 10.2133 )
+
+[node name="Pine_13" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 16.845, 16.8128, 14.2082 )
+
+[node name="Pine_14" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 18.7426, 18.4626, 19.6012 )
+
+[node name="Pine_15" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 7.74258, 16.9215, 21.6012 )
+
+[node name="Pine_16" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -0.347011, 15.4939, 16.1083 )
+
+[node name="Pine_17" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 4.54669, 15.5199, 9.51678 )
+
+[node name="Pine_18" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -7.53776, 15.6394, 9.31704 )
+
+[node name="Pine_19" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -12.4315, 15.3413, 14.011 )
+
+[node name="Pine_20" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -9.43532, 16.4671, 25.5961 )
+
+[node name="Pine_21" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 4.34694, 19.1299, 33.0864 )
+
+[node name="Pine_22" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -6.53905, 16.3299, 22.8996 )
+
+[node name="Pine_23" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -11.539, 15.368, 19.8996 )
+
+[node name="Pine_24" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -11.539, 16.0333, 24.2236 )
 
 [editable path="World"]
 
