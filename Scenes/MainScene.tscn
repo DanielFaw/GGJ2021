@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Objects/WorldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Objects/Natures/Pine_1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/ShipParts/Ship_Broken.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/DirtObject.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=8]
+[ext_resource path="res://Textures/Shadow.png" type="Texture" id=9]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -21,19 +23,40 @@ fog_depth_begin = 20.0
 auto_exposure_max_luma = 10.29
 ssao_radius = 0.37
 
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.0366667, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.106667, 0.106667, 0.106667, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.25
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 57.78
+gravity = Vector3( 0, -6.038, -0.816 )
+damping = 2.37
+angle = 17.0
+color_ramp = SubResource( 4 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+flags_unshaded = true
+params_blend_mode = 1
+params_billboard_mode = 1
+albedo_texture = ExtResource( 9 )
+
+[sub_resource type="QuadMesh" id=7]
+material = SubResource( 6 )
+
 [node name="MainScene" type="Spatial"]
 
 [node name="World" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.2417, 0 )
 
-[node name="Plane" parent="World/WorldMap" index="0"]
-transform = Transform( 32.944, 0, 0, 0, 32.944, 0, 0, 0, 32.944, -0.140824, -0.043045, 0.0524743 )
-
-[node name="CollisionShape" parent="World/WorldMap/StaticBody" index="0"]
-transform = Transform( 32.944, 0, 0, 0, 32.944, 0, 0, 0, 32.944, -0.13762, -0.0379968, 0.0611064 )
-
-[node name="Grass" parent="World" index="3"]
-material/0 = null
+[node name="Grass_MULTI" parent="World" index="1"]
+material_override = ExtResource( 8 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -363,6 +386,13 @@ transform = Transform( 0.147537, -0.129827, 0.140925, 0.054039, 0.198832, 0.1266
 [node name="Ship_Broken" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.674754, 0, 0, 0, -0.533038, -0.41372, 0, 0.41372, -0.533038, 1.56385, 19.9708, -5.05436 )
 
-[editable path="World"]
+[node name="Smoke Particles" type="Spatial" parent="Ship_Broken"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0731912, 1.47201, 0.078167 )
 
-[editable path="World/WorldMap"]
+[node name="Particles" type="Particles" parent="Ship_Broken/Smoke Particles"]
+amount = 54
+lifetime = 1.06
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 7 )
+
+[editable path="World"]
