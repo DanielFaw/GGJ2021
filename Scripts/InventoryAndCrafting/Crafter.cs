@@ -7,12 +7,32 @@ public class Crafter : Node
 
 	//Never address these on their own; only use helper functions to input/output info from them!
 	//These have to be dictionaries unless we want to add a null crafting recipe for everything that can't be directly crafted, which would be kinda dumb
-	Dictionary<int, List<int>> craftingDict = new Dictionary<int, List<int>>();
-	Dictionary<int, List<int>> recipeDict = new Dictionary<int, List<int>>();
+	Dictionary<int, List<int>> craftingDict;
+	Dictionary<int, List<int>> recipeDict;
 	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		craftingDict = new Dictionary<int, List<int>>();
+		recipeDict = new Dictionary<int, List<int>>();
+		/*
+		AddRecipe(1, new List<int>{2,2,5,3});
+		AddRecipe(2, new List<int>{2,3,2,4});
+		AddRecipe(3, new List<int>{2,2});
+		AddRecipe(4, new List<int>{7,6});
+		AddRecipe(5, new List<int>{10,7});
+		AddRecipe(6, new List<int>{10, 69});
+		AddRecipe(8, new List<int>{1, 2, 3, 4, 5, 6});
+		AddRecipe(9, new List<int>{5, 8});
+		AddRecipe(69, new List<int>{420,420});
+		
+		//GD.Print("Player's fake inventory contains 2,2,3,3,4,4,9,7,10,6,10,69");
+		List<int> sneakyInventory = new List<int>{2,2,3,3,4,4,9,7,100,6,10,69,1,20, 5, 8, 420, 420};
+		//Player can craft: ID2, ID3, ID4, ID6, ID8
+		
+		CheckCrafting(sneakyInventory);
+		*/
 		
 	}
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,28 +57,69 @@ public class Crafter : Node
 		craftingDict.Add(IdOfItem, formattedArray);
 		
 		//Adds the crafted item as a craftable for all the ingredients, for faster searching later
-		for(int i = 1; i < formattedArray.Count; i+=2)
+		for(int i = 1; i <= formattedArray.Count; i+=2)
 		{
-			recipeDict[formattedArray[i-1]].Add(IdOfItem);
-			/*
-			if(recipeDict[formattedArray[i-1]] == null || recipeDict[formattedArray[i-1]].Count == 0)
+			if(!recipeDict.ContainsKey(formattedArray[i]))
 			{
 				//If it doesn't yet exist, just add it like you normally would
-				recipeDict[formattedArray[i-1]].Add(IdOfItem);
+				recipeDict.Add(formattedArray[i], new List<int>{IdOfItem});
+				//recipeDict[formattedArray[i-1]].Add(IdOfItem);
 			}
 			else
 			{
 				//otherwise, append the list
-				recipeDict[formattedArray[i-1]].Add(IdOfItem);
+				recipeDict[formattedArray[i]].Add(IdOfItem);
 			}
-			*/
+			
 		}
 	}
 	
 	
-	private bool UsedInRecipe(int IdOfItem)
+	private bool IsMaterial(int IdOfItem)
 	{
-		if(recipeDict[IdOfItem] != null && recipeDict[IdOfItem].Count != 0)
+		return recipeDict.ContainsKey(IdOfItem);
+		
+	}
+	
+	public void CheckCrafting(List<int> playerInventory)
+	{
+		foreach(KeyValuePair<int, List<int>> item in craftingDict)
+		{
+			if(CheckCrafting(item.Key, playerInventory))
+			{
+				//This item can be crafted!
+			}
+		}
+	}
+	
+	
+	public bool CheckCrafting(int itemId, List<int> playerInventory)
+	{
+		if(!craftingDict.ContainsKey(itemId))
+		{
+			return false;
+		}
+		List<int> recipe = craftingDict[itemId];
+		int counter = recipe.Count/2;
+		for(int i = 1; i <= recipe.Count; i += 2)
+		{
+			for(int j = 1; j <= playerInventory.Count; j += 2)
+			{
+				if(recipe[i] == playerInventory[j])
+				{
+					if(playerInventory[j-1] >= recipe[i-1])
+					{
+						counter--;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+		}
+		
+		if(counter == 0)
 		{
 			return true;
 		}
@@ -66,56 +127,6 @@ public class Crafter : Node
 		{
 			return false;
 		}
-	}
-	
-	//Player inventory is also a List<int> where the values are amount:ID
-	//This function returns a list of all craftable item IDs
-	public List<int> CheckCrafting(List<int> playerInventory)
-	{
-		//Given the items that the player has, those are the only ones that need to be searched for for valid recipes.
-		List<int> possibleRecipeIDs = new List<int>();
-		
-		for(int i = 1; i < playerInventory.Count; i+=2)
-		{
-			if (UsedInRecipe(playerInventory[i]))
-			{
-				//If the item is part of a crafting recipe, then also check if the player has enough of that and the rest
-				bool hasAllItems = true;
-				
-				//get that items recipe
-				List<int> tempStorage = craftingDict[playerInventory[i]];
-				
-				//search the player inventory for first the item itself
-				for(int j = 1; i < tempStorage.Count; j+=2)
-				{
-					if(!hasAllItems) {break;}//Break out early if the player doesn't have this part of the recipe
-					
-					for(int invNum = 1; invNum < playerInventory.Count; invNum += 2)
-					{
-						if(!hasAllItems) {break;}
-						
-						if(playerInventory[invNum] == tempStorage[i])
-						{
-							//if the player has a needed item, make sure the player has enough
-							if(playerInventory[invNum-1] >= tempStorage[j-1])
-							{
-								possibleRecipeIDs.Add(playerInventory[invNum]);
-							}
-							else
-							{
-								hasAllItems = false;
-							}
-						}
-					}
-				}
-				
-
-
-			}
-		}
-		
-		return possibleRecipeIDs; //This will return any valid crafting recipes
-		
 	}
 
 }
