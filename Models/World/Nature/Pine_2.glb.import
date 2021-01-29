@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Pine_1.glb-71b25e4ceba165becf78e1ebe07e5f45.scn"
+path="res://.import/Pine_2.glb-6955959ae499645dabe1db9d84c15030.scn"
 
 [deps]
 
-source_file="res://Models/World/Pine_1.glb"
-dest_files=[ "res://.import/Pine_1.glb-71b25e4ceba165becf78e1ebe07e5f45.scn" ]
+source_file="res://Models/World/Nature/Pine_2.glb"
+dest_files=[ "res://.import/Pine_2.glb-6955959ae499645dabe1db9d84c15030.scn" ]
 
 [params]
 

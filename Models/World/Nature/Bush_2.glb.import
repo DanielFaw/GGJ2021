@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/WorldMap.glb-eed0b7381804199ad814b89aed5fb448.scn"
+path="res://.import/Bush_2.glb-6f055ecbd01ab4140860bd493515ab8a.scn"
 
 [deps]
 
-source_file="res://Models/World/WorldMap.glb"
-dest_files=[ "res://.import/WorldMap.glb-eed0b7381804199ad814b89aed5fb448.scn" ]
+source_file="res://Models/World/Nature/Bush_2.glb"
+dest_files=[ "res://.import/Bush_2.glb-6f055ecbd01ab4140860bd493515ab8a.scn" ]
 
 [params]
 

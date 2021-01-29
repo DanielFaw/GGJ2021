@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Pine_2.glb-fe35d1f73560832602c909ee27fe2816.scn"
+path="res://.import/Ship_Broken.glb-99ba12c95b9890d94d5fa4f4627ca063.scn"
 
 [deps]
 
-source_file="res://Models/World/Pine_2.glb"
-dest_files=[ "res://.import/Pine_2.glb-fe35d1f73560832602c909ee27fe2816.scn" ]
+source_file="res://Models/ShipModels/Ship_Broken.glb"
+dest_files=[ "res://.import/Ship_Broken.glb-99ba12c95b9890d94d5fa4f4627ca063.scn" ]
 
 [params]
 

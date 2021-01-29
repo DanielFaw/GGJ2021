@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Objects/WorldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/ThirdPersonCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/Natures/Pine_2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/Natures/Pine_1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/ShipParts/Ship_Broken.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Prefabs/DirtObject.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -13,6 +16,8 @@ background_sky = SubResource( 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 1.47
 ambient_light_sky_contribution = 0.0
+fog_color = Color( 0.560784, 0.776471, 1, 0.572549 )
+fog_depth_begin = 20.0
 auto_exposure_max_luma = 10.29
 ssao_radius = 0.37
 
@@ -20,6 +25,15 @@ ssao_radius = 0.37
 
 [node name="World" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.2417, 0 )
+
+[node name="Plane" parent="World/WorldMap" index="0"]
+transform = Transform( 32.944, 0, 0, 0, 32.944, 0, 0, 0, 32.944, -0.140824, -0.043045, 0.0524743 )
+
+[node name="CollisionShape" parent="World/WorldMap/StaticBody" index="0"]
+transform = Transform( 32.944, 0, 0, 0, 32.944, 0, 0, 0, 32.944, -0.13762, -0.0379968, 0.0611064 )
+
+[node name="Grass" parent="World" index="3"]
+material/0 = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -35,7 +49,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3295, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825576, 0.0586605, -1.54062 )
 
 [node name="Pine_2" parent="Decoration" instance=ExtResource( 4 )]
-transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 9.78001, 17.7415, -0.797464 )
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -5.7946, 16.4859, -40.568 )
+
+[node name="Pine_33" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 11.459, 19.7245, -22.4259 )
+
+[node name="Pine_44" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 25.2588, 21.1408, -33.353 )
+
+[node name="Pine_43" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 30.1671, 21.9733, -26.1584 )
 
 [node name="Pine_3" parent="Decoration" instance=ExtResource( 4 )]
 transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 12.5088, 16.1905, 15.9053 )
@@ -54,6 +77,30 @@ transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 21.5266, 
 
 [node name="Pine_8" parent="Decoration" instance=ExtResource( 4 )]
 transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 10.9062, 16.8503, 3.80404 )
+
+[node name="Pine_34" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 7.54984, 18.8005, -24.5635 )
+
+[node name="Pine_52" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 7.81668, 18.4291, -14.608 )
+
+[node name="Pine_46" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 10.0595, 19.3186, -36.4987 )
+
+[node name="Pine_35" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -11.9257, 15.796, -14.2374 )
+
+[node name="Pine_56" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.60178, 0.0901728, 0, -0.0901728, 0.60178, 0, 0, 0, 0.608498, -25.9706, 17.22, -18.11 )
+
+[node name="Pine_37" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -20.4841, 15.6568, -27.5518 )
+
+[node name="Pine_53" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -33.3209, 18.5071, -29.3066 )
+
+[node name="Pine_36" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 0.309803, 18.0142, -31.1334 )
 
 [node name="Pine_9" parent="Decoration" instance=ExtResource( 4 )]
 transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 33.568, 21.3889, 17.7725 )
@@ -77,7 +124,7 @@ transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 18.7426, 
 transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 7.74258, 16.9215, 21.6012 )
 
 [node name="Pine_16" parent="Decoration" instance=ExtResource( 4 )]
-transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -0.347011, 15.4939, 16.1083 )
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -19.3221, 15.7529, -48.4905 )
 
 [node name="Pine_17" parent="Decoration" instance=ExtResource( 4 )]
 transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, 4.54669, 15.5199, 9.51678 )
@@ -100,8 +147,221 @@ transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -6.53905,
 [node name="Pine_23" parent="Decoration" instance=ExtResource( 4 )]
 transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -11.539, 15.368, 19.8996 )
 
+[node name="Pine_47" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -26.5046, 15.8685, 19.9435 )
+
 [node name="Pine_24" parent="Decoration" instance=ExtResource( 4 )]
 transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -11.539, 16.0333, 24.2236 )
+
+[node name="Pine_1" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 10.0859, 20.1111, 30.064 )
+
+[node name="Pine_27" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, -11.4442, 16.7297, 1.86911 )
+
+[node name="Pine_30" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.527624, -0.00303104, -0.00260969, 0.00300774, 0.52761, -0.00469333, 0.00263652, 0.00467832, 0.527612, -8.39617, 15.4275, -29.5293 )
+
+[node name="Pine_58" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.527624, -0.00303104, -0.00260969, 0.00300774, 0.52761, -0.00469333, 0.00263652, 0.00467832, 0.527612, -38.4394, 16.0461, -7.09866 )
+
+[node name="Pine_50" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, -11.4442, 15.4038, -23.6928 )
+
+[node name="Pine_54" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.651868, -0.00374479, -0.00322422, 0.003716, 0.651851, -0.00579851, 0.00325736, 0.00577996, 0.651853, -38.4924, 20.1101, -24.9793 )
+
+[node name="Pine_51" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, 1.74943, 17.1754, -18.0712 )
+
+[node name="Pine_57" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, -41.1918, 19.2854, -14.0141 )
+
+[node name="Pine_49" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, 0.0708771, 17.4321, -35.227 )
+
+[node name="Pine_38" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, -32.2586, 19.038, -14.3995 )
+
+[node name="Pine_55" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, -28.1049, 16.1279, -11.048 )
+
+[node name="Pine_59" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, -43.9397, 15.3137, 1.74422 )
+
+[node name="Pine_60" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, -32.7377, 14.3864, 1.84648 )
+
+[node name="Pine_61" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, -24.0492, 14.4641, 7.38572 )
+
+[node name="Pine_65" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -32.4886, 17.7297, 38.5144 )
+
+[node name="Pine_66" parent="Decoration" instance=ExtResource( 4 )]
+transform = Transform( 0.608498, 0, 0, 0, 0.608498, 0, 0, 0, 0.608498, -24.4685, 16.4176, 41.208 )
+
+[node name="Pine_67" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, -43.6759, 18.9729, 28.536 )
+
+[node name="Pine_68" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, -30.8282, 17.8882, 26.3615 )
+
+[node name="Pine_39" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.73256, -0.00420833, -0.00362333, 0.00417598, 0.73254, -0.00651628, 0.00366057, 0.00649543, 0.732543, -16.6014, 15.8513, -19.1691 )
+
+[node name="Pine_40" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.549062, -0.0031542, -0.00271573, 0.00312995, 0.549047, -0.00488403, 0.00274365, 0.0048684, 0.54905, 11.2418, 19.6719, -19.2697 )
+
+[node name="Pine_62" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.549062, -0.0031542, -0.00271573, 0.00312995, 0.549047, -0.00488403, 0.00274365, 0.0048684, 0.54905, 21.2716, 19.7237, 22.0103 )
+
+[node name="Pine_63" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.549062, -0.0031542, -0.00271573, 0.00312995, 0.549047, -0.00488403, 0.00274365, 0.0048684, 0.54905, 15.3382, 20.3041, 26.5974 )
+
+[node name="Pine_41" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.549062, -0.0031542, -0.00271573, 0.00312995, 0.549047, -0.00488403, 0.00274365, 0.0048684, 0.54905, 35.9739, 22.032, -5.05107 )
+
+[node name="Pine_64" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.549062, -0.0031542, -0.00271573, 0.00312995, 0.549047, -0.00488403, 0.00274365, 0.0048684, 0.54905, 22.8394, 21.2161, -11.7229 )
+
+[node name="Pine_31" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 21.226, 21.6441, -37.5426 )
+
+[node name="Pine_45" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 17.6782, 21.0315, -26.2627 )
+
+[node name="Pine_32" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 17.6782, 20.9893, -21.2018 )
+
+[node name="Pine_42" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 37.1662, 22.648, -14.1009 )
+
+[node name="Pine_29" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 13.3909, 22.9172, 39.8995 )
+
+[node name="Pine_28" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, -15.7158, 16.7034, 34.8422 )
+
+[node name="Pine_48" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 0.34107, 20.7996, 38.6281 )
+
+[node name="Pine_26" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 16.3885, 21.2634, 32.9377 )
+
+[node name="Pine_25" parent="Decoration" instance=ExtResource( 5 )]
+transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 4.5971, 17.9839, 26.6653 )
+
+[node name="ShipDirt" type="Spatial" parent="."]
+transform = Transform( 0.674754, 0, 0, 0, -0.533038, -0.41372, 0, 0.41372, -0.533038, 2.04864, 17.4856, -2.68885 )
+
+[node name="DirtObject" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.425149, 0, 0, 0, 0.425149, -1.63913e-07, 0, 1.63913e-07, 0.425149, -0.0522234, 0.146202, 0.0625801 )
+
+[node name="DirtObject15" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.212658, 0.225723, -0.290822, -0.225723, 0.18537, 0.308931, 0.290822, 0.308931, 0.0271205, 0.249698, -0.0833416, 0.35832 )
+
+[node name="DirtObject16" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.17243, 0.183023, -0.235807, -0.183023, 0.150304, 0.250491, 0.235807, 0.250491, 0.0219904, 0.374486, -0.37756, 0.681477 )
+
+[node name="DirtObject17" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.152704, 0.162085, -0.208831, -0.162085, 0.133109, 0.221834, 0.208831, 0.221835, 0.0194747, 0.321043, -0.81587, 1.03426 )
+
+[node name="DirtObject18" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.152704, 0.162085, -0.208831, -0.162085, 0.133109, 0.221834, 0.208831, 0.221835, 0.0194748, 0.0539401, -1.11518, 1.41989 )
+
+[node name="DirtObject19" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.284429, -0.0680011, 0.0876123, 0.0680008, 0.0835873, 0.285638, -0.0876128, 0.285638, -0.0627297, -0.496245, -1.23626, 1.87371 )
+
+[node name="DirtObject27" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.244424, 0.112151, -0.144496, -0.112151, 0.282406, 0.02948, 0.144496, 0.0294796, 0.267305, -0.562765, -1.3996, 1.98265 )
+
+[node name="DirtObject21" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.22063, -0.052748, 0.0679604, 0.0527479, 0.064838, 0.221568, -0.0679607, 0.221568, -0.0486589, -1.3385, -1.00954, 1.62439 )
+
+[node name="DirtObject22" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.22063, -0.052748, 0.0679604, 0.0527479, 0.064838, 0.221568, -0.0679607, 0.221568, -0.0486588, -0.945276, -1.12687, 1.83475 )
+
+[node name="DirtObject25" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.22063, -0.052748, 0.0679604, 0.0527479, 0.064838, 0.221568, -0.0679607, 0.221568, -0.0486588, -0.577535, -1.60865, 2.31439 )
+
+[node name="DirtObject26" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.12482, 0.123391, -0.158976, -0.12339, 0.194707, 0.0542442, 0.158976, 0.0542436, 0.166921, -0.294989, -1.43481, 1.97639 )
+
+[node name="DirtObject23" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.230815, 0.0324623, -0.0418245, -0.0324624, 0.0610091, 0.226501, 0.0418244, 0.226501, -0.0550145, -0.776474, -1.50937, 2.26838 )
+
+[node name="DirtObject28" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.230815, 0.0324623, -0.0418245, -0.0324624, 0.0610091, 0.226501, 0.0418244, 0.226501, -0.0550146, -0.776474, -1.35939, 2.05476 )
+
+[node name="DirtObject24" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.230815, 0.0324623, -0.0418245, -0.0324624, 0.0610091, 0.226501, 0.0418244, 0.226501, -0.0550146, -0.317409, -1.46584, 2.27148 )
+
+[node name="DirtObject29" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.106417, 0.112151, 0.263244, -0.0124202, 0.282406, -0.115294, -0.285869, 0.0294797, 0.103004, -0.562765, -1.78616, 2.48068 )
+
+[node name="DirtObject34" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.305106, 0.00644465, -0.00830284, -0.00644468, 0.305219, 8.78274e-05, 0.00830281, 8.73953e-05, 0.305174, -1.28701, -1.15053, 1.9247 )
+
+[node name="DirtObject35" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.0373036, 0.0064447, 0.30293, 0.000874564, 0.305219, -0.0063857, -0.302998, 8.74251e-05, -0.0373138, -0.926875, -1.46781, 2.33349 )
+
+[node name="DirtObject30" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.138578, 0.123391, 0.147138, -0.0352307, 0.194707, -0.130101, -0.188769, 0.0542437, 0.132297, -0.294989, -1.82137, 2.47442 )
+
+[node name="DirtObject31" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.0757879, 0.0324622, -0.221993, -0.219124, 0.0610091, -0.0658869, 0.0481602, 0.226501, 0.0495631, -0.776474, -1.89592, 2.76641 )
+
+[node name="DirtObject32" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.0757879, 0.0324622, -0.221993, -0.219124, 0.0610091, -0.0658869, 0.0481602, 0.226501, 0.0495631, -0.776474, -1.74595, 2.5528 )
+
+[node name="DirtObject33" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.0757879, 0.0324622, -0.221993, -0.219124, 0.0610091, -0.0658869, 0.0481602, 0.226501, 0.0495631, -0.317409, -1.85239, 2.76952 )
+
+[node name="DirtObject20" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.284429, -0.0680011, 0.0876123, 0.0680008, 0.0835875, 0.285638, -0.0876128, 0.285638, -0.0627298, -0.231916, -1.1612, 1.676 )
+
+[node name="DirtObject14" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.425149, 0, 0, 0, 0.425149, -1.63913e-07, 0, 1.63913e-07, 0.425149, -0.0522234, 0.146202, 0.0625801 )
+
+[node name="DirtObject2" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.297487, 0.267187, 0.144443, -0.300718, 0.287507, 0.0875189, -0.042678, -0.163408, 0.390164, -0.330781, 0.534931, -0.16458 )
+
+[node name="DirtObject3" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.381225, -0.0452767, 0.182673, 0.175108, -0.0658894, -0.381768, 0.0689676, 0.417564, -0.0404337, -0.957486, 0.509634, -0.131986 )
+
+[node name="DirtObject9" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.381225, -0.0452767, 0.182673, -0.0194154, -0.419922, -0.0635622, 0.187196, 0.0486531, -0.378605, -0.957486, 0.171324, -0.303974 )
+
+[node name="DirtObject13" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.332383, 0.231041, -0.129973, 0.229224, -0.355196, -0.0452, -0.133152, -0.034739, -0.402263, -0.957486, -0.119703, -0.529864 )
+
+[node name="DirtObject12" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.381225, -0.0452767, 0.182673, -0.0194154, -0.419922, -0.0635621, 0.187196, 0.048653, -0.378605, -0.518659, 0.0639324, -0.165609 )
+
+[node name="DirtObject10" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.0568496, 0.404777, -0.116938, 0.371529, -0.00749016, -0.206546, -0.19871, -0.129809, -0.352726, -1.30701, 0.0421791, -0.137583 )
+
+[node name="DirtObject11" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( -0.388161, -0.064112, -0.16116, 0.120398, 0.184756, -0.363484, 0.124848, -0.3775, -0.150526, -1.52655, -0.173534, 0.140343 )
+
+[node name="DirtObject4" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.381225, -0.0452767, 0.182673, -0.0603686, -0.420275, 0.0218165, 0.178255, -0.0455009, -0.383283, -1.38359, 0.292744, 0.147455 )
+
+[node name="DirtObject5" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.276078, -0.0327888, 0.13229, 0.134843, 0.0222499, -0.275893, 0.0198216, 0.305327, 0.0343115, -1.67936, 0.0268612, 0.44894 )
+
+[node name="DirtObject6" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.221853, 0.0713684, 0.201203, 0.0563528, -0.299459, 0.0440842, 0.205913, 0.00506073, -0.228842, -1.82091, -0.330198, 0.795477 )
+
+[node name="DirtObject7" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.221853, 0.0713684, 0.201203, 0.0563528, -0.299459, 0.0440842, 0.205913, 0.00506063, -0.228842, -1.62364, -0.566881, 1.10041 )
+
+[node name="DirtObject8" parent="ShipDirt" instance=ExtResource( 7 )]
+transform = Transform( 0.147537, -0.129827, 0.140925, 0.054039, 0.198832, 0.1266, -0.183833, -0.0457461, 0.150315, -1.56015, -0.770988, 1.36338 )
+
+[node name="Ship_Broken" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.674754, 0, 0, 0, -0.533038, -0.41372, 0, 0.41372, -0.533038, 1.56385, 19.9708, -5.05436 )
 
 [editable path="World"]
 
