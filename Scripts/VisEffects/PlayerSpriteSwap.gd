@@ -1,8 +1,8 @@
 extends Sprite3D
 
-var frontSprite = preload("res://sprites/dood-front.png")
+var backSprite = preload("res://sprites/dood-front.png")
 var rightSprite = preload("res://sprites/dood-side.png")
-var backSprite = preload("res://sprites/dood-back.png")
+var frontSprite = preload("res://sprites/dood-back.png")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -18,10 +18,10 @@ func _process(delta):
 	
 	if(Input.is_action_pressed("player_move_right")):
 		texture = rightSprite;
-		flip_h = false;
+		flip_h = true;
 	elif(Input.is_action_pressed("player_move_left")):
 		texture = rightSprite;
-		flip_h = true;
+		flip_h = false;
 		
 	if(Input.is_action_pressed("player_move_forward")):
 		texture = frontSprite;

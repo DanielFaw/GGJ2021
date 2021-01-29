@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/radiationkrab2v1.png-5e411270e44b968b82c51e53c275f224.stex"
+path="res://.import/ShipIcon.png-5211dcec02588faba0ce7af14c425b97.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/radiationkrab2v1.png"
-dest_files=[ "res://.import/radiationkrab2v1.png-5e411270e44b968b82c51e53c275f224.stex" ]
+source_file="res://external/Promi/ShipIcon.png"
+dest_files=[ "res://.import/ShipIcon.png-5211dcec02588faba0ce7af14c425b97.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
