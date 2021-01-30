@@ -34,9 +34,10 @@ func CheckIfComplete():
 	for i in repairableParts:
 
 		if(!repairedParts.has(i)):
+			pass;
 			#Not complete
-
-		#If one is not complete, return false
-		#Otherwise - Trigger end game
+			
+	#If one is not complete, return falsereturn true;
+	#Otherwise - Trigger end game
 
 	pass;

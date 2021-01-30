@@ -64,11 +64,11 @@ material_override = ExtResource( 8 )
 environment = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 2.21174, 0, 0, 0, 2.21174, 0, 0, 0, 2.21174, 0, 18.7198, 0 )
+transform = Transform( 2.21174, 0, 0, 0, 2.21174, 0, 0, 0, 2.21174, 0, 18.2035, 0 )
 jumpPower = 2.0
 
 [node name="ThirdPersonCamera" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3295, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034658, 17.785, -0.0400496 )
 
 [node name="Decoration" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825576, 0.0586605, -1.54062 )

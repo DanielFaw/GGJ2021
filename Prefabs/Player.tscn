@@ -22,6 +22,7 @@ runSpeed = 2.0
 airMoveSpeed = 1.0
 acceleration = 10.0
 cameraPivotPath = NodePath("../ThirdPersonCamera")
+handsPath = NodePath("_VIS/Hands")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
@@ -53,16 +54,29 @@ raycastPath = NodePath(".")
 maxSize = 0.21
 disappearDist = 0.9
 
-[node name="LaserGun" type="Spatial" parent="_VIS"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0576066, 0 )
+[node name="Hands" type="Spatial" parent="_VIS"]
 
-[node name="MiningLaser" parent="_VIS/LaserGun" instance=ExtResource( 7 )]
-transform = Transform( -2.18582e-09, 0, 0.0500058, 0, 0.0500058, 0, -0.0500058, 0, -2.18582e-09, -0.134608, 0, -0.0619367 )
+[node name="LeftHand" type="Spatial" parent="_VIS/Hands"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0468651, -0.0347708, -0.151801 )
 
-[node name="Cylinder" parent="_VIS/LaserGun/MiningLaser" index="0"]
+[node name="MiningLaser" parent="_VIS/Hands/LeftHand" instance=ExtResource( 7 )]
+transform = Transform( -2.5564e-09, 0, 0.0584837, 0, 0.0584837, 0, -0.0584837, 0, -2.5564e-09, -0.156937, 0, 0.150765 )
+
+[node name="Cylinder" parent="_VIS/Hands/LeftHand/MiningLaser" index="0"]
+material/0 = ExtResource( 8 )
+
+[node name="RightHand" type="Spatial" parent="_VIS/Hands"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10579, -0.0355268, 8.32975e-06 )
+
+[node name="MiningLaser2" parent="_VIS/Hands/RightHand" instance=ExtResource( 7 )]
+transform = Transform( -2.5564e-09, 0, 0.0584837, 0, 0.0584837, 0, -0.0584837, 0, -2.5564e-09, 0, 0, 0 )
+
+[node name="Cylinder" parent="_VIS/Hands/RightHand/MiningLaser2" index="0"]
 material/0 = ExtResource( 8 )
 
 [node name="CrafterScript" type="Spatial" parent="."]
 script = ExtResource( 1 )
 
-[editable path="_VIS/LaserGun/MiningLaser"]
+[editable path="_VIS/Hands/LeftHand/MiningLaser"]
+
+[editable path="_VIS/Hands/RightHand/MiningLaser2"]

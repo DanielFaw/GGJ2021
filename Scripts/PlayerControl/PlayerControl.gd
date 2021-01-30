@@ -31,15 +31,26 @@ var animationTree;
 var stateMachine;
 var queueJump = false;
 
+
+export var handsPath:NodePath;
+var hands;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	cameraPivot = get_node(cameraPivotPath);
 	cameraStatic = (cameraPivot is Camera);
+	hands = get_node(handsPath);
 	visObject = $_VIS
 
 func _process(delta):
 
 	Utilities.CorrectJitter(delta,direction,visObject,self);
+
+	if(direction == Vector3.ZERO):
+		#Match hands with camera
+		hands.rotation = cameraPivot.rotation - visObject.rotation;
+	else:
+		hands.look_at(hands.global_transform.origin + direction.normalized(),Vector3.UP);
 
 	#Register player jump
 	if(Input.is_action_just_pressed("player_jump") && is_on_floor()):
