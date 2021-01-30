@@ -1,13 +1,4 @@
-extends Sprite3D
-
-var backSprite = preload("res://sprites/dood-front.png")
-var rightSprite = preload("res://sprites/dood-side.png")
-var frontSprite = preload("res://sprites/dood-back.png")
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
+extends AnimatedSprite3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -15,19 +6,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(StateController.currentState == 1):
+		if(Input.is_action_pressed("player_move_forward")):
+			animation = "front"
+			flip_h = false;
+		elif(Input.is_action_pressed("player_move_back")):
+			animation = "back"
+			flip_h = false;
+		elif(Input.is_action_pressed("player_move_right")):
+			animation = "side"
+			flip_h = true;
+		elif(Input.is_action_pressed("player_move_left")):
+			animation = "side"
+			flip_h = false;
 	
-	if(Input.is_action_pressed("player_move_right")):
-		texture = rightSprite;
-		flip_h = true;
-	elif(Input.is_action_pressed("player_move_left")):
-		texture = rightSprite;
-		flip_h = false;
-		
-	if(Input.is_action_pressed("player_move_forward")):
-		texture = frontSprite;
-		flip_h = false;
-	if(Input.is_action_pressed("player_move_back")):
-		texture = backSprite;
-		flip_h = false;
 	
 	pass

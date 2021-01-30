@@ -26,17 +26,19 @@ var rotY = 0;
 var targetRotation = 0;
 var colliding;
 
-export var animationTreePath:NodePath;
 var animationTree;
 var stateMachine;
 var queueJump = false;
 
+var enabled = true;
 
 export var handsPath:NodePath;
 var hands;
+var handEndRot = Vector3.ZERO;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	StateController.playerController = self;
 	cameraPivot = get_node(cameraPivotPath);
 	cameraStatic = (cameraPivot is Camera);
 	hands = get_node(handsPath);
@@ -46,25 +48,20 @@ func _process(delta):
 
 	Utilities.CorrectJitter(delta,direction,visObject,self);
 
-	if(direction == Vector3.ZERO):
-		#Match hands with camera
-		hands.rotation = cameraPivot.rotation - visObject.rotation;
-	else:
-		hands.look_at(hands.global_transform.origin + direction.normalized(),Vector3.UP);
+	if(enabled):
+		if(direction == Vector3.ZERO):
+			#Match hands with camera
+			hands.rotation = cameraPivot.rotation - visObject.rotation + handEndRot;
+		else:
+			hands.look_at(hands.global_transform.origin + direction.normalized(),Vector3.UP);
+			handEndRot = hands.rotation;
 
-	#Register player jump
-	if(Input.is_action_just_pressed("player_jump") && is_on_floor()):
-		if(!queueJump):
-			queueJump = true;
-		
+		#Register player jump
+		if(Input.is_action_just_pressed("player_jump") && is_on_floor()):
+			if(!queueJump):
+				queueJump = true;
 
-
-	#Is the camera static (Only a camera)
-	if(cameraStatic):
-		visObject.rotation.y = targetRotation;
-
-	#Probably using a third person camera rig (Spatial node as root of camera rig)
-	else:
+		#Look in direction
 		if(direction != Vector3.ZERO):
 			#TODO: Fix terrible jitter when player slides along wall
 			
@@ -76,8 +73,9 @@ func _process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	HandleMovementCalculations(delta);
-	move_and_slide(velocity,Vector3.UP);	
+	if(enabled):
+		HandleMovementCalculations(delta);
+		move_and_slide(velocity,Vector3.UP);	
 	if(cameraStatic):
 		if(abs(direction.x) > 0.15 || abs(direction.z) > 0.15 && direction != Vector3.ZERO):
 			rotY = atan2(direction.x,direction.z);
@@ -86,14 +84,18 @@ func _physics_process(delta):
 
 #Process for calculating movement
 func HandleMovementCalculations(delta):
-	HandleInput();
+	if(enabled):
+		HandleInput();
 
 	#Calculate gravity
 	velocity.y -= delta * gravity;
 
-	if(queueJump):
-		velocity.y = jumpPower;
-		queueJump = false;
+	if(is_on_floor()):
+		velocity.y = -0.1;
+		if(queueJump):
+			velocity.y = jumpPower;
+			queueJump = false;
+			
 
 	#Isolate x and z components
 	var horizontalVelocity = velocity;
@@ -121,8 +123,10 @@ func HandleInput():
 
 	if(Input.is_action_pressed("player_move_forward")):
 		direction -= cameraPivot.transform.basis.z;
+
 	if(Input.is_action_pressed("player_move_back")):
 		direction += cameraPivot.transform.basis.z;
+
 	if(Input.is_action_pressed("player_move_left")):
 		direction -= cameraPivot.transform.basis.x;
 	if(Input.is_action_pressed("player_move_right")):

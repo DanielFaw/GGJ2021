@@ -26,6 +26,7 @@ var enabled = true;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	StateController.cameraController = self;
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pivotObject = get_node(pivotObjectPath);
 	cam = $SpringArm/Offset/Camera;
@@ -58,17 +59,12 @@ func _process(delta):
 #	tweenNode.interpolate_property(cam,"translation:z",-0.2,0,0.2,Tween.TRANS_BOUNCE,Tween.EASE_OUT);
 #	tweenNode.start();
 
-func SetEnabled(var isEnabled:bool):
-	enabled = isEnabled;
-	(cam as Camera).current = isEnabled;
-		
-
 func _input(event):
 	if(event is InputEventMouseMotion):
 		mouseInput = event.relative
 	
 	if(event is InputEventMouseButton):
-		if(event.button_index == BUTTON_LEFT && event.pressed):
+		if(event.button_index == BUTTON_LEFT && event.pressed && StateController.currentState ==1):
 			ToggleCursor(false);
 	
 	if(event is InputEventKey):
