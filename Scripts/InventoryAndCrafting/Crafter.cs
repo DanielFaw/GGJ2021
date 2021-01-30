@@ -30,6 +30,35 @@ public class Crafter : Node
 	private void InitiateRecipes()
 	{
 		//Make all of the crafting recipes here
+		AddRecipe(7, new List<int> {1,6,  5,5 });
+		AddRecipe(8, new List<int> {6,1, 6,2 });
+		AddRecipe(9, new List<int> {6,3, 1,8 });
+		AddRecipe(10, new List<int> {6,4,  1,9 });
+		AddRecipe(11, new List<int> {5,5, 1,10 });
+		AddRecipe(12, new List<int> {3,2,  9,1 });
+		AddRecipe(13, new List<int> {3,3,  9,1 });
+		AddRecipe(14, new List<int> {3,4, 9,1, 2,26 });
+		AddRecipe(15, new List<int> {5,5, 9,1 });
+		AddRecipe(16, new List<int> {10,1,  2,2,  3,27 });
+		AddRecipe(17, new List<int> {6,4,  6,27,  3,26 });
+		AddRecipe(18, new List<int> {1,2,  2,1}, 5);
+		AddRecipe(19, new List<int> {1,3, 2,1 }, 4);
+		AddRecipe(20, new List<int> {1,4, 2,1 }, 3);
+		AddRecipe(21, new List<int> {20, 1 });
+		AddRecipe(22, new List<int> {20,2 });
+		AddRecipe(23, new List<int> {15,3 });
+		AddRecipe(24, new List<int> {12,4 });
+		AddRecipe(25, new List<int> {5,5 });
+		AddRecipe(41, new List<int> { 1, 31, 1, 1 });
+		AddRecipe(42, new List<int> { 1, 32, 1, 1 });
+		AddRecipe(43, new List<int> { 1, 33, 1, 1 });
+		AddRecipe(44, new List<int> { 1, 34, 1, 1 });
+		AddRecipe(45, new List<int> { 1, 35, 1, 1 });
+		AddRecipe(46, new List<int> { 1, 36, 1, 1 });
+		AddRecipe(47, new List<int> { 1, 37, 1, 1 });
+		AddRecipe(48, new List<int> { 1, 38, 1, 1 });
+		AddRecipe(49, new List<int> { 1, 39, 1, 1 });
+		AddRecipe(50, new List<int> { 1, 40, 1, 1 });
 	}
 
 
