@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Utility/AutoGround.gd" type="Script" id=1]
+
+[node name="RayCast" type="RayCast"]
+enabled = true
+cast_to = Vector3( 0, -100, 0 )
+collision_mask = 3
+collide_with_areas = true
+script = ExtResource( 1 )

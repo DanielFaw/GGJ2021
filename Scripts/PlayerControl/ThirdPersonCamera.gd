@@ -29,7 +29,7 @@ func _ready():
 	StateController.cameraController = self;
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pivotObject = get_node(pivotObjectPath);
-	cam = $SpringArm/Offset/Camera;
+	cam = $SpringArm/Offset/NoCull;
 
 	if(pivotObject != null):
 		global_transform.origin = pivotObject.global_transform.origin;

@@ -49,12 +49,12 @@ func _process(delta):
 	Utilities.CorrectJitter(delta,direction,visObject,self);
 
 	if(enabled):
-		if(direction == Vector3.ZERO):
-			#Match hands with camera
-			hands.rotation = cameraPivot.rotation - visObject.rotation + handEndRot;
-		else:
-			hands.look_at(hands.global_transform.origin + direction.normalized(),Vector3.UP);
-			handEndRot = hands.rotation;
+		#if(direction == Vector3.ZERO):
+		#	#Match hands with camera
+		#	hands.rotation = cameraPivot.rotation - visObject.rotation + handEndRot;
+		#else:
+		#	hands.look_at(hands.global_transform.origin + direction.normalized(),Vector3.UP);
+		#	handEndRot = hands.rotation;
 
 		#Register player jump
 		if(Input.is_action_just_pressed("player_jump") && is_on_floor()):
