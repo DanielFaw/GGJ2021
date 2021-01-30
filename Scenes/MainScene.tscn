@@ -67,6 +67,9 @@ radius = 2.10788
 [node name="World" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.2417, 0 )
 
+[node name="WorldMap" parent="World" index="0"]
+transform = Transform( 13.2751, 0, 0, 0, 13.2751, 0, 0, 0, 13.2751, 0.0618095, 1.04299, 0.0484324 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
 
@@ -86,6 +89,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30.5785, 0 )
 
 [node name="Rock_Resource2" parent="Decoration/Rocks" instance=ExtResource( 18 )]
 transform = Transform( 2.55426, 0, 0, 0, 2.55426, 0, 0, 0, 2.55426, 13, 23.2369, -2 )
+timeBetweenDrops = 3.0
 
 [node name="Rock_Resource3" parent="Decoration/Rocks" instance=ExtResource( 18 )]
 transform = Transform( 2.55426, 0, 0, 0, 2.55426, 0, 0, 0, 2.55426, 1, 23.2369, -16 )
