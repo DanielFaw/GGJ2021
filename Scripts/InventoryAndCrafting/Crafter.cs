@@ -8,32 +8,18 @@ public class Crafter : Node
 	//Never address these on their own; only use helper functions to input/output info from them!
 	//These have to be dictionaries unless we want to add a null crafting recipe for everything that can't be directly crafted, which would be kinda dumb
 	Dictionary<int, List<int>> craftingDict;
+	Dictionary<int, int> madePerCraft;
 	Dictionary<int, List<int>> recipeDict;
+
 	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		craftingDict = new Dictionary<int, List<int>>();
+		madePerCraft = new Dictionary<int, int>();
 		recipeDict = new Dictionary<int, List<int>>();
-		/*
-		AddRecipe(1, new List<int>{2,2,5,3});
-		AddRecipe(2, new List<int>{2,3,2,4});
-		AddRecipe(3, new List<int>{2,2});
-		AddRecipe(4, new List<int>{7,6});
-		AddRecipe(5, new List<int>{10,7});
-		AddRecipe(6, new List<int>{10, 69});
-		AddRecipe(8, new List<int>{1, 2, 3, 4, 5, 6});
-		AddRecipe(9, new List<int>{5, 8});
-		AddRecipe(69, new List<int>{420,420});
-		
-		//GD.Print("Player's fake inventory contains 2,2,3,3,4,4,9,7,10,6,10,69");
-		List<int> sneakyInventory = new List<int>{2,2,3,3,4,4,9,7,100,6,10,69,1,20, 5, 8, 420, 420};
-		//Player can craft: ID2, ID3, ID4, ID6, ID8
-		
-		CheckCrafting(sneakyInventory);
-		*/
-		
+		InitiateRecipes();
 	}
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
@@ -41,13 +27,18 @@ public class Crafter : Node
 //      
 //  }
 
+	private void InitiateRecipes()
+	{
+		//Make all of the crafting recipes here
+	}
+
 
 
 
 	//The formatted array must be as follows:
 		//[amountOfItem, itemID, amountOfItemN, ItemNId]
 		//This can go on however long you like, but it must be amount,id even if it is just 1 item/amount
-	private void AddRecipe(int IdOfItem, List<int> formattedArray)
+	private void AddRecipe(int IdOfItem, List<int> formattedArray, int amountCreated = 1)
 	{
 		if(formattedArray.Count % 2 != 0)
 		{
@@ -55,6 +46,7 @@ public class Crafter : Node
 		}
 		
 		craftingDict.Add(IdOfItem, formattedArray);
+		madePerCraft.Add(IdOfItem, amountCreated);
 		
 		//Adds the crafted item as a craftable for all the ingredients, for faster searching later
 		for(int i = 1; i <= formattedArray.Count; i+=2)
@@ -73,6 +65,31 @@ public class Crafter : Node
 			
 		}
 	}
+
+	public List<int> GetRecipe(int itemId)
+	{
+		if(craftingDict.ContainsKey(itemId))
+		{
+			return craftingDict[itemId];
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	public int AmountCreated(int itemId)
+	{
+		if(madePerCraft.ContainsKey(itemId))
+		{
+			return madePerCraft[itemId];
+		}
+		else
+		{
+			return -1;
+		}
+		
+	}
 	
 	
 	private bool IsMaterial(int IdOfItem)
@@ -81,15 +98,19 @@ public class Crafter : Node
 		
 	}
 	
-	public void CheckCrafting(List<int> playerInventory)
+	public List<int> CheckCrafting(List<int> playerInventory)
 	{
+		List<int> craftableItems = new List<int>();
 		foreach(KeyValuePair<int, List<int>> item in craftingDict)
 		{
 			if(CheckCrafting(item.Key, playerInventory))
 			{
 				//This item can be crafted!
+				craftableItems.Add(item.Key);			
+
 			}
 		}
+		return craftableItems;
 	}
 	
 	
