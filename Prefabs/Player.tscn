@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/InventoryAndCrafting/Crafter.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/VisEffects/FakeShadow.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scripts/VisEffects/PlayerSpriteSwap.gd" type="Script" id=4]
 [ext_resource path="res://Textures/Shadow.png" type="Texture" id=5]
 [ext_resource path="res://sprites/dood-back.png" type="Texture" id=6]
+[ext_resource path="res://Models/WeaponsAndTools/MiningLaser.glb" type="PackedScene" id=7]
+[ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=8]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.193086
@@ -51,5 +53,16 @@ raycastPath = NodePath(".")
 maxSize = 0.21
 disappearDist = 0.9
 
+[node name="LaserGun" type="Spatial" parent="_VIS"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0576066, 0 )
+
+[node name="MiningLaser" parent="_VIS/LaserGun" instance=ExtResource( 7 )]
+transform = Transform( -2.18582e-09, 0, 0.0500058, 0, 0.0500058, 0, -0.0500058, 0, -2.18582e-09, -0.134608, 0, -0.0619367 )
+
+[node name="Cylinder" parent="_VIS/LaserGun/MiningLaser" index="0"]
+material/0 = ExtResource( 8 )
+
 [node name="CrafterScript" type="Spatial" parent="."]
 script = ExtResource( 1 )
+
+[editable path="_VIS/LaserGun/MiningLaser"]

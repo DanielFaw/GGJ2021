@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Objects/WorldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Prefabs/DirtObject.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=8]
 [ext_resource path="res://Textures/Shadow.png" type="Texture" id=9]
+[ext_resource path="res://Prefabs/StaticFakeShadow.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/ShipParts/Ship_Repaired.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -275,124 +277,148 @@ transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 16.3885, 
 [node name="Pine_25" parent="Decoration" instance=ExtResource( 5 )]
 transform = Transform( 0.497639, 0, 0, 0, 0.497639, 0, 0, 0, 0.497639, 4.5971, 17.9839, 26.6653 )
 
-[node name="ShipDirt" type="Spatial" parent="."]
-transform = Transform( 0.674754, 0, 0, 0, -0.533038, -0.41372, 0, 0.41372, -0.533038, 2.04864, 17.4856, -2.68885 )
+[node name="ShipDisplay" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8349, 17.7658, -3.72383 )
 
-[node name="DirtObject" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="Broken" type="Spatial" parent="ShipDisplay"]
+
+[node name="ShipDirt" type="Spatial" parent="ShipDisplay/Broken"]
+transform = Transform( 0.674754, 0, 0, 0, -0.533038, -0.41372, 0, 0.41372, -0.533038, 0.213742, -0.28023, 1.03498 )
+
+[node name="DirtObject" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.425149, 0, 0, 0, 0.425149, -1.63913e-07, 0, 1.63913e-07, 0.425149, -0.0522234, 0.146202, 0.0625801 )
 
-[node name="DirtObject15" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject15" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.212658, 0.225723, -0.290822, -0.225723, 0.18537, 0.308931, 0.290822, 0.308931, 0.0271205, 0.249698, -0.0833416, 0.35832 )
 
-[node name="DirtObject16" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject16" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.17243, 0.183023, -0.235807, -0.183023, 0.150304, 0.250491, 0.235807, 0.250491, 0.0219904, 0.374486, -0.37756, 0.681477 )
 
-[node name="DirtObject17" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject17" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.152704, 0.162085, -0.208831, -0.162085, 0.133109, 0.221834, 0.208831, 0.221835, 0.0194747, 0.321043, -0.81587, 1.03426 )
 
-[node name="DirtObject18" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject18" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.152704, 0.162085, -0.208831, -0.162085, 0.133109, 0.221834, 0.208831, 0.221835, 0.0194748, 0.0539401, -1.11518, 1.41989 )
 
-[node name="DirtObject19" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject19" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.284429, -0.0680011, 0.0876123, 0.0680008, 0.0835873, 0.285638, -0.0876128, 0.285638, -0.0627297, -0.496245, -1.23626, 1.87371 )
 
-[node name="DirtObject27" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject27" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.244424, 0.112151, -0.144496, -0.112151, 0.282406, 0.02948, 0.144496, 0.0294796, 0.267305, -0.562765, -1.3996, 1.98265 )
 
-[node name="DirtObject21" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject21" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.22063, -0.052748, 0.0679604, 0.0527479, 0.064838, 0.221568, -0.0679607, 0.221568, -0.0486589, -1.3385, -1.00954, 1.62439 )
 
-[node name="DirtObject22" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject22" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.22063, -0.052748, 0.0679604, 0.0527479, 0.064838, 0.221568, -0.0679607, 0.221568, -0.0486588, -0.945276, -1.12687, 1.83475 )
 
-[node name="DirtObject25" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject25" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.22063, -0.052748, 0.0679604, 0.0527479, 0.064838, 0.221568, -0.0679607, 0.221568, -0.0486588, -0.577535, -1.60865, 2.31439 )
 
-[node name="DirtObject26" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject26" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.12482, 0.123391, -0.158976, -0.12339, 0.194707, 0.0542442, 0.158976, 0.0542436, 0.166921, -0.294989, -1.43481, 1.97639 )
 
-[node name="DirtObject23" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject23" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.230815, 0.0324623, -0.0418245, -0.0324624, 0.0610091, 0.226501, 0.0418244, 0.226501, -0.0550145, -0.776474, -1.50937, 2.26838 )
 
-[node name="DirtObject28" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject28" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.230815, 0.0324623, -0.0418245, -0.0324624, 0.0610091, 0.226501, 0.0418244, 0.226501, -0.0550146, -0.776474, -1.35939, 2.05476 )
 
-[node name="DirtObject24" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject24" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.230815, 0.0324623, -0.0418245, -0.0324624, 0.0610091, 0.226501, 0.0418244, 0.226501, -0.0550146, -0.317409, -1.46584, 2.27148 )
 
-[node name="DirtObject29" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject29" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.106417, 0.112151, 0.263244, -0.0124202, 0.282406, -0.115294, -0.285869, 0.0294797, 0.103004, -0.562765, -1.78616, 2.48068 )
 
-[node name="DirtObject34" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject34" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.305106, 0.00644465, -0.00830284, -0.00644468, 0.305219, 8.78274e-05, 0.00830281, 8.73953e-05, 0.305174, -1.28701, -1.15053, 1.9247 )
 
-[node name="DirtObject35" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject35" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.0373036, 0.0064447, 0.30293, 0.000874564, 0.305219, -0.0063857, -0.302998, 8.74251e-05, -0.0373138, -0.926875, -1.46781, 2.33349 )
 
-[node name="DirtObject30" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject30" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.138578, 0.123391, 0.147138, -0.0352307, 0.194707, -0.130101, -0.188769, 0.0542437, 0.132297, -0.294989, -1.82137, 2.47442 )
 
-[node name="DirtObject31" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject31" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.0757879, 0.0324622, -0.221993, -0.219124, 0.0610091, -0.0658869, 0.0481602, 0.226501, 0.0495631, -0.776474, -1.89592, 2.76641 )
 
-[node name="DirtObject32" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject32" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.0757879, 0.0324622, -0.221993, -0.219124, 0.0610091, -0.0658869, 0.0481602, 0.226501, 0.0495631, -0.776474, -1.74595, 2.5528 )
 
-[node name="DirtObject33" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject33" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.0757879, 0.0324622, -0.221993, -0.219124, 0.0610091, -0.0658869, 0.0481602, 0.226501, 0.0495631, -0.317409, -1.85239, 2.76952 )
 
-[node name="DirtObject20" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject20" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.284429, -0.0680011, 0.0876123, 0.0680008, 0.0835875, 0.285638, -0.0876128, 0.285638, -0.0627298, -0.231916, -1.1612, 1.676 )
 
-[node name="DirtObject14" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject14" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.425149, 0, 0, 0, 0.425149, -1.63913e-07, 0, 1.63913e-07, 0.425149, -0.0522234, 0.146202, 0.0625801 )
 
-[node name="DirtObject2" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject2" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.297487, 0.267187, 0.144443, -0.300718, 0.287507, 0.0875189, -0.042678, -0.163408, 0.390164, -0.330781, 0.534931, -0.16458 )
 
-[node name="DirtObject3" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject3" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.381225, -0.0452767, 0.182673, 0.175108, -0.0658894, -0.381768, 0.0689676, 0.417564, -0.0404337, -0.957486, 0.509634, -0.131986 )
 
-[node name="DirtObject9" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject9" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.381225, -0.0452767, 0.182673, -0.0194154, -0.419922, -0.0635622, 0.187196, 0.0486531, -0.378605, -0.957486, 0.171324, -0.303974 )
 
-[node name="DirtObject13" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject13" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.332383, 0.231041, -0.129973, 0.229224, -0.355196, -0.0452, -0.133152, -0.034739, -0.402263, -0.957486, -0.119703, -0.529864 )
 
-[node name="DirtObject12" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject12" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.381225, -0.0452767, 0.182673, -0.0194154, -0.419922, -0.0635621, 0.187196, 0.048653, -0.378605, -0.518659, 0.0639324, -0.165609 )
 
-[node name="DirtObject10" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject10" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.0568496, 0.404777, -0.116938, 0.371529, -0.00749016, -0.206546, -0.19871, -0.129809, -0.352726, -1.30701, 0.0421791, -0.137583 )
 
-[node name="DirtObject11" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject11" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( -0.388161, -0.064112, -0.16116, 0.120398, 0.184756, -0.363484, 0.124848, -0.3775, -0.150526, -1.52655, -0.173534, 0.140343 )
 
-[node name="DirtObject4" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject4" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.381225, -0.0452767, 0.182673, -0.0603686, -0.420275, 0.0218165, 0.178255, -0.0455009, -0.383283, -1.38359, 0.292744, 0.147455 )
 
-[node name="DirtObject5" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject5" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.276078, -0.0327888, 0.13229, 0.134843, 0.0222499, -0.275893, 0.0198216, 0.305327, 0.0343115, -1.67936, 0.0268612, 0.44894 )
 
-[node name="DirtObject6" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject6" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.221853, 0.0713684, 0.201203, 0.0563528, -0.299459, 0.0440842, 0.205913, 0.00506073, -0.228842, -1.82091, -0.330198, 0.795477 )
 
-[node name="DirtObject7" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject7" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.221853, 0.0713684, 0.201203, 0.0563528, -0.299459, 0.0440842, 0.205913, 0.00506063, -0.228842, -1.62364, -0.566881, 1.10041 )
 
-[node name="DirtObject8" parent="ShipDirt" instance=ExtResource( 7 )]
+[node name="DirtObject8" parent="ShipDisplay/Broken/ShipDirt" instance=ExtResource( 7 )]
 transform = Transform( 0.147537, -0.129827, 0.140925, 0.054039, 0.198832, 0.1266, -0.183833, -0.0457461, 0.150315, -1.56015, -0.770988, 1.36338 )
 
-[node name="Ship_Broken" parent="." instance=ExtResource( 6 )]
-transform = Transform( 0.674754, 0, 0, 0, -0.533038, -0.41372, 0, 0.41372, -0.533038, 1.56385, 19.9708, -5.05436 )
+[node name="Ship_Broken" parent="ShipDisplay/Broken" instance=ExtResource( 6 )]
+transform = Transform( 0.674754, 0, 0, 0, -0.533038, -0.41372, 0, 0.41372, -0.533038, -0.271048, 2.20497, -1.33053 )
 
-[node name="Smoke Particles" type="Spatial" parent="Ship_Broken"]
+[node name="Smoke Particles" type="Spatial" parent="ShipDisplay/Broken/Ship_Broken"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0731912, 1.47201, 0.078167 )
 
-[node name="Particles" type="Particles" parent="Ship_Broken/Smoke Particles"]
+[node name="Particles" type="Particles" parent="ShipDisplay/Broken/Ship_Broken/Smoke Particles"]
 amount = 54
 lifetime = 1.06
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 7 )
 
+[node name="Repaired" type="Spatial" parent="ShipDisplay"]
+transform = Transform( 0.994146, -0.10793, 0.00505079, 0.107938, 0.989937, -0.0915036, 0.004876, 0.091513, 0.995792, 0.0651089, -0.332933, -0.033896 )
+visible = false
+
+[node name="Ship_Repaired" parent="ShipDisplay/Repaired" instance=ExtResource( 11 )]
+transform = Transform( 0.674754, 0, 0, 0, 0.674755, 2.98023e-08, 0, -2.98023e-08, 0.674755, -0.00881338, -0.00157928, 0.00492573 )
+
+[node name="StaticFakeShadow" parent="ShipDisplay/Repaired" instance=ExtResource( 10 )]
+transform = Transform( 1, -2.62953e-08, 1.62981e-09, -1.14887e-08, 1, -1.49012e-08, 1.33878e-09, 0, 1, -0.119246, 0.853466, -0.0358706 )
+
+[node name="ShadowSprite" parent="ShipDisplay/Repaired/StaticFakeShadow" index="1"]
+transform = Transform( 3.59285, 0, 0, 0, 0.650689, 3.52133, 0, -3.53317, 0.648508, 0, 0, 0 )
+
 [editable path="World"]
+
+[editable path="ShipDisplay/Repaired/Ship_Repaired"]
+
+[editable path="ShipDisplay/Repaired/Ship_Repaired/ShipRepairedParts"]
+
+[editable path="ShipDisplay/Repaired/StaticFakeShadow"]
