@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Models/ShipModels/ShipRepairedParts.glb" type="PackedScene" id=1]
+[ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=2]
+
+[node name="ShipRepairedParts" instance=ExtResource( 1 )]
+
+[node name="RepairedParts" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Booster_Repaired" parent="RepairedParts" index="0"]
+material/0 = ExtResource( 2 )
+
+[node name="CockpitWindow_Repaired" parent="RepairedParts" index="1"]
+material/0 = ExtResource( 2 )
+
+[node name="Navigation_Repaired" parent="RepairedParts" index="2"]
+material/0 = ExtResource( 2 )
+
+[node name="Radio_Repaired" parent="RepairedParts" index="3"]
+material/0 = ExtResource( 2 )
+
+[node name="SidePannel_Repaired" parent="RepairedParts" index="4"]
+material/0 = ExtResource( 2 )
+
+[node name="Tank_Repaired" parent="RepairedParts" index="5"]
+material/0 = ExtResource( 2 )

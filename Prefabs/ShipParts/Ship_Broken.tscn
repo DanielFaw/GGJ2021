@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=1]
+[ext_resource path="res://Models/ShipModels/Ship_Broken.glb" type="PackedScene" id=2]
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.32965, 3.07804, 1.21463 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.92609, 1, 0.685914 )
+
+[node name="Ship_Broken" instance=ExtResource( 2 )]
+
+[node name="Ship_Repaired_Hull" parent="." index="0"]
+transform = Transform( 0.919535, 0, 0.393008, 0, 1, 0, -0.393008, 0, 0.919535, 0.00745392, 2.93565, -0.00324075 )
+material/0 = ExtResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="." index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5446, 0 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody" index="1"]
+transform = Transform( 0.736102, 0.523702, -0.428824, -0.540994, 0.835951, 0.0922599, 0.406793, 0.164078, 0.898665, 1.63883, 1.97382, 0.645192 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="StaticBody" index="2"]
+transform = Transform( -0.0371796, 0.0118782, 0.999238, -0.540502, 0.840804, -0.0301058, -0.840521, -0.541209, -0.0248406, -0.0900832, 1.97382, -1.47943 )
+shape = SubResource( 2 )

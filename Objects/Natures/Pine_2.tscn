@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=1]
+[ext_resource path="res://Models/World/Nature/Pine_2.glb" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/StaticFakeShadow.tscn" type="PackedScene" id=3]
+
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.69787, 4.08486, 1.64397 )
+
+[node name="Pine_2" instance=ExtResource( 2 )]
+
+[node name="Pine_2" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000398397 )
+material/0 = ExtResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="." index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.93296, 0 )
+shape = SubResource( 1 )
+
+[node name="StaticFakeShadow" parent="." index="2" instance=ExtResource( 3 )]
+transform = Transform( 4.77004, 0, 0, 0, 4.77004, 0, 0, 0, 4.77004, 0, 1.23831, 0 )

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/eye-front.png-3caffd2117844dd6d9a5f9874bc684c2.s3tc.stex"
-path.etc2="res://.import/eye-front.png-3caffd2117844dd6d9a5f9874bc684c2.etc2.stex"
+path.s3tc="res://.import/dood-side-animation-Sheet.png-aaae275c6c6e8f7bd75bcaf423eb710b.s3tc.stex"
+path.etc2="res://.import/dood-side-animation-Sheet.png-aaae275c6c6e8f7bd75bcaf423eb710b.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/eye-front.png"
-dest_files=[ "res://.import/eye-front.png-3caffd2117844dd6d9a5f9874bc684c2.s3tc.stex", "res://.import/eye-front.png-3caffd2117844dd6d9a5f9874bc684c2.etc2.stex" ]
+source_file="res://sprites/dood-side-animation-Sheet.png"
+dest_files=[ "res://.import/dood-side-animation-Sheet.png-aaae275c6c6e8f7bd75bcaf423eb710b.s3tc.stex", "res://.import/dood-side-animation-Sheet.png-aaae275c6c6e8f7bd75bcaf423eb710b.etc2.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
 flags/filter=false
-flags/mipmaps=true
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=1
 process/fix_alpha_border=true

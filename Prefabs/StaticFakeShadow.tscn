@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Textures/Shadow.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/VisEffects/StaticFakeShadow.gd" type="Script" id=2]
+
+[node name="StaticFakeShadow" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="RayCast" type="RayCast" parent="."]
+enabled = true
+collision_mask = 3
+collide_with_areas = true
+
+[node name="ShadowSprite" type="Sprite3D" parent="."]
+transform = Transform( 0.542826, 0, 0, 0, -2.37277e-08, 0.542826, 0, -0.542826, -2.37277e-08, 0, 0, 0 )
+opacity = 0.5
+alpha_cut = 2
+texture = ExtResource( 1 )
