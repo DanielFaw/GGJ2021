@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=1]
+[ext_resource path="res://Models/ShipModels/Parts/Booster.glb" type="PackedScene" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.572815, 1.30059, 0.574787 )
+
+[node name="Booster" instance=ExtResource( 2 )]
+
+[node name="Booster" parent="." index="0"]
+transform = Transform( 0.919535, 0, 0.393008, 0, 1, 0, -0.393008, 0, 0.919535, 0, 0, 0 )
+material/0 = ExtResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="." index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.143254, 0 )
+shape = SubResource( 1 )
