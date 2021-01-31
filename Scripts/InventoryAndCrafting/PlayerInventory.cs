@@ -28,18 +28,18 @@ public class PlayerInventory : Node
 	}
 
 	float temp = 0;
-    public override void _Process(float delta)
-    {
+	public override void _Process(float delta)
+	{
 		
 		temp += delta;
 		if(temp > 3f)
-        {
+		{
 			//Print out a few things
 			if(ItemList.Instance.RetrieveItemName(2) == null)
-            {
+			{
 				GD.Print("Item retrieval failed");
 				return;
-            }
+			}
 			string one = ItemList.Instance.RetrieveItemName(2);
 			string two = ItemList.Instance.RetrieveItemDescription(7);
 			string three = ItemList.Instance.RetrieveItemDescription(5);
@@ -59,10 +59,10 @@ public class PlayerInventory : Node
 			GD.Print(two);
 			GD.Print(three);
 			temp = -1000;
-        }
-    }
+		}
+	}
 
-    private void PrintInventory()
+	private void PrintInventory()
 	{
 		foreach(KeyValuePair<int, int> item in inventory)
 		{
