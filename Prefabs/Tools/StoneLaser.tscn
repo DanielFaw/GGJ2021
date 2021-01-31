@@ -26,8 +26,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81312, 0, 0 )
 shape = SubResource( 1 )
 <<<<<<< HEAD
 
-[node name="Beam" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24801, 0.38254, 0 )
+[node name="LaserTip" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776783, 0.38254, 0 )
+
+[node name="Beam" type="CSGBox" parent="LaserTip"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47123, 0, 0 )
 visible = false
 width = 4.64727
 height = 0.166933

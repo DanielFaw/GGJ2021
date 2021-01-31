@@ -38,10 +38,14 @@ billboard = 2
 frames = ExtResource( 4 )
 animation = "back"
 <<<<<<< HEAD
+<<<<<<< HEAD
 frame = 2
 =======
 frame = 1
 >>>>>>> parent of abb1239... Added laser effects, basic resource logic
+=======
+frame = 3
+>>>>>>> parent of 823fa93... Fixed laserScript
 playing = true
 script = ExtResource( 6 )
 
