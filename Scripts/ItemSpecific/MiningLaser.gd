@@ -16,7 +16,7 @@ func _ready():
 
 
 func _process(delta):
-	#Beam effect
+	
 	if(currentResource != null && currentResource.isMining):
 		beamEffectObject.visible = true;
 	else:
@@ -39,12 +39,18 @@ func _process(delta):
 func TakeDamage():
 	print("Laser Took damage!");
 
+func ResourceDestroyed():
+	currentResource.disconnect("ResourceDepleted",self,"ResourcedDestroyed");
+	currentResource.disconnect("ResourceMined",self,"TakeDamage");
+
+
 func BodyEnter(var body):
 
 	var parent = body.get_parent();
 	if((parent as RESOURCE) != null && currentResource == null):
 		currentResource = (parent as RESOURCE);
 		currentResource.connect("ResourceMined",self,"TakeDamage");
+		currentResource.connect("ResourceDepleted",self,"ResourcedDestroyed");
 		if(previousResource == null):
 			previousResource = currentResource;
 	pass;
@@ -55,6 +61,7 @@ func BodyExit(var body):
 
 		#No longer take damage when "mining" this resource
 		currentResource.disconnect("ResourceMined",self,"TakeDamage");
+		currentResource.disconnect("ResourceDepleted",self,"ResourcedDestroyed");
 		previousResource = currentResource;
 		currentResource = null;
 	pass;

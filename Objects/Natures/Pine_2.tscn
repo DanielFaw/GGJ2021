@@ -11,7 +11,9 @@ extents = Vector3( 1.69787, 4.08486, 1.64397 )
 
 [node name="Pine_2" instance=ExtResource( 2 )]
 script = ExtResource( 5 )
+amountOfItemsToSpawn = 3
 hardness = 2
+itemIdDropped = 1
 timeBetweenDrops = 2.0
 
 [node name="Pine_2" parent="." index="0"]

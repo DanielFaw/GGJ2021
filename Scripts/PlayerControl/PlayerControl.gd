@@ -62,7 +62,7 @@ func _process(delta):
 
 
 		if(Input.is_action_pressed("player_fire_left") || Input.is_action_pressed("player_fire_right")):
-			var targetPoint = visObject.global_transform.origin - cameraPivot.global_transform.basis.z;
+			var targetPoint = visObject.global_transform.origin - cameraPivot.global_transform.basis.z ;
 
 			if(targetPoint != visObject.global_transform.origin):
 				visObject.look_at(targetPoint,Vector3.UP);

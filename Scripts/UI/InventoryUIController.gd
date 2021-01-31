@@ -46,7 +46,10 @@ func _ItemUpdate(var itemId:int, var newAmount:int):
 			openSlots.push_front(filledSlots[itemId]);
 			filledSlots.erase(itemId);
 	else:
-		var newSlot = openSlots[0];
+		var newSlot = openSlots.pop_front();
+		
 		var texture = GlobalItemList.RetrieveItemTexture(itemId);
 		newSlot.SetInfo(itemId,newAmount,texture);
+		filledSlots[itemId] = newSlot;
+		
 	pass;

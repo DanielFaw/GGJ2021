@@ -1,6 +1,7 @@
 extends Node
 
-export var repairedParts = [];
+var visualShip;
+var shipComplete = false;
 
 #Item id's of all repairable parts
 var repairableParts = [1,2,3,4,5,6]
@@ -13,31 +14,11 @@ func _ready():
 func RepairPart(var partId:int) -> bool:
 
 	#Check if it's already been reparied
-	if(repairedParts.has(partId)):
-		return false;
-		pass;
-	else:
-		#Repair the part - visually triggering it
-		
-		#Add it to the list of repaired parts
-		repairedParts.append(partId);
+	if(repairableParts.has(partId)):
+		visualShip.RepairPart(partId);
 		return true;
-		pass;
-	
+
+
+	return false;
 	pass;
 
-
-func CheckIfComplete():
-
-	#Loop through all repairable parts
-
-	for i in repairableParts:
-
-		if(!repairedParts.has(i)):
-			pass;
-			#Not complete
-			
-	#If one is not complete, return falsereturn true;
-	#Otherwise - Trigger end game
-
-	pass;

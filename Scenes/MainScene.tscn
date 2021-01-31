@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Objects/WorldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Objects/Natures/Pine_1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/ShipParts/Ship_Broken.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/DirtObject.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/VisEffects/VisualShipRepair.gd" type="Script" id=8]
 [ext_resource path="res://Textures/Shadow.png" type="Texture" id=9]
 [ext_resource path="res://Prefabs/StaticFakeShadow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/ShipParts/Ship_Repaired.tscn" type="PackedScene" id=11]
@@ -3302,6 +3303,14 @@ transform = Transform( -0.430206, 0, -0.250135, 0, 0.497639, 0, 0.250135, 0, -0.
 
 [node name="ShipDisplay" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8349, 31.0968, -3.72383 )
+script = ExtResource( 8 )
+repariableParts = {
+41: NodePath("Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts/CockpitWindow_Repaired"),
+42: NodePath("Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts/Booster_Repaired"),
+43: NodePath("Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts/Navigation_Repaired"),
+44: NodePath("Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts/SidePannel_Repaired"),
+45: NodePath("Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts/Radio_Repaired")
+}
 
 [node name="Broken" type="Spatial" parent="ShipDisplay"]
 
@@ -3428,10 +3437,10 @@ draw_pass_1 = SubResource( 7 )
 
 [node name="Repaired" type="Spatial" parent="ShipDisplay"]
 transform = Transform( 0.994146, -0.10793, 0.00505079, 0.107938, 0.989937, -0.0915036, 0.004876, 0.091513, 0.995792, 0.0651089, -0.332933, -0.033896 )
+visible = false
 
 [node name="Ship_Repaired" parent="ShipDisplay/Repaired" instance=ExtResource( 11 )]
 transform = Transform( 0.674754, 0, 0, 0, 0.674755, 2.98023e-08, 0, -2.98023e-08, 0.674755, -0.00881338, -0.00157928, 0.00492573 )
-visible = false
 
 [node name="CollisionShape" parent="ShipDisplay/Repaired/Ship_Repaired/StaticBody" index="0"]
 disabled = true
@@ -3442,6 +3451,24 @@ disabled = true
 [node name="CollisionShape3" parent="ShipDisplay/Repaired/Ship_Repaired/StaticBody" index="2"]
 disabled = true
 
+[node name="Booster_Repaired" parent="ShipDisplay/Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts" index="0"]
+visible = false
+
+[node name="CockpitWindow_Repaired" parent="ShipDisplay/Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts" index="1"]
+visible = false
+
+[node name="Navigation_Repaired" parent="ShipDisplay/Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts" index="2"]
+visible = false
+
+[node name="Radio_Repaired" parent="ShipDisplay/Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts" index="3"]
+visible = false
+
+[node name="SidePannel_Repaired" parent="ShipDisplay/Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts" index="4"]
+visible = false
+
+[node name="Tank_Repaired" parent="ShipDisplay/Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts" index="5"]
+visible = false
+
 [node name="StaticFakeShadow" parent="ShipDisplay/Repaired" instance=ExtResource( 10 )]
 transform = Transform( 1, -2.62953e-08, 1.62981e-09, -1.14887e-08, 1, -1.49012e-08, 1.33878e-09, 0, 1, -0.119246, 0.853466, -0.0358706 )
 
@@ -3449,7 +3476,7 @@ transform = Transform( 1, -2.62953e-08, 1.62981e-09, -1.14887e-08, 1, -1.49012e-
 transform = Transform( 3.59285, 0, 0, 0, 0.650689, 3.52133, 0, -3.53317, 0.648508, 0, 0, 0 )
 
 [node name="Area" type="Area" parent="ShipDisplay"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.330916, 0, 1.50769 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.330916, 0, 2.49516 )
 collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="ShipDisplay/Area"]
@@ -3457,7 +3484,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15103, 0, 0 )
 shape = SubResource( 8 )
 
 [node name="CraftingPopup" type="Spatial" parent="ShipDisplay"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.330916, 0, 1.50769 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.330916, 0, 2.49516 )
 script = ExtResource( 16 )
 signPath = NodePath("Sprite3D")
 

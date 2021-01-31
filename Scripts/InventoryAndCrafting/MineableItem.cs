@@ -11,6 +11,9 @@ public class MineableItem : Node
 	[Signal]
 	public delegate void ResourceMined();
 
+	[Signal]
+	public delegate void ResourceDepleted();
+
 	//The amount of time in seconds between resource drops
 	[Export] float timeBetweenDrops;
 	public async void MineResource(float miningPower)
@@ -22,13 +25,17 @@ public class MineableItem : Node
 		float miningSpeed = timeBetweenDrops / miningPower;
 
 		//Start mining
-		while(isMining && amountOfItemsToSpawn > 0)
+		while(isMining && amountOfItemsToSpawn >= 0)
 		{
 			//Pause for *miningSpeed* amount of seconds before spawing resource
 			await ToSignal(GetTree().CreateTimer(miningSpeed), "timeout");
-			HitItem();
-		}
 
+			//Make sure the player hasn't stopped mining since the timer was created
+			if(isMining)
+			{
+				HitItem();
+			}
+		}
 	}
 	public void StopMining()
 	{
@@ -36,30 +43,32 @@ public class MineableItem : Node
 	}
 
 
-	public void HitItem()
+	public async void HitItem()
 	{
-		
-		amountOfItemsToSpawn--;
+
 		if(amountOfItemsToSpawn > 0)
 		{
 			//Emit signal to "damage" laser
 			EmitSignal(nameof(ResourceMined));
 			//Drop item
 			GD.Print(Name + " has been mined!");
+
+			//TEMPORARY
+			PlayerInventory inv = (PlayerInventory)GetNode("/root/PlayerInventory");
+			inv.AddItem(1,itemIdDropped);
 		}
 		else
 		{
+			EmitSignal(nameof(ResourceDepleted));
+			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+
 			//Destroy resource node
+			if(!IsQueuedForDeletion())
+			{
+				QueueFree();
+			}
+			
 		}
-	}
-
-	
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
-	{
-		if(isMining)
-		{
-
-		}
+		amountOfItemsToSpawn--;
 	}
 }

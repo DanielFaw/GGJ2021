@@ -26,6 +26,7 @@ Utilities="*res://Scripts/Global/Utilities.gd"
 GlobalItemList="*res://Scripts/Global/ItemList.cs"
 PlayerInventory="*res://Scripts/InventoryAndCrafting/PlayerInventory.cs"
 Crafter="*res://Scripts/InventoryAndCrafting/Crafter.cs"
+ProgressManager="*res://Scripts/Global/ProgressManager.gd"
 
 [display]
 

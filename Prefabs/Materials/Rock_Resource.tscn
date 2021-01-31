@@ -10,6 +10,7 @@ radius = 0.283535
 
 [node name="Rock_Resource" type="Spatial"]
 script = ExtResource( 4 )
+itemIdDropped = 2
 timeBetweenDrops = 1.0
 
 [node name="Rock" parent="." instance=ExtResource( 1 )]
