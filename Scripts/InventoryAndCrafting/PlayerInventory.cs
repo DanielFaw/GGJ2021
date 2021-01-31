@@ -16,7 +16,7 @@ public class PlayerInventory : Node
 	public override void _Ready()
 	{
 		inventory = new Dictionary<int, int>();
-		craftRef = GetNode("../Crafter") as Crafter;
+		craftRef = GetNode("/root/Crafter") as Crafter;
 		//GD.Print("Inventory working!");
 		SetInventory();
 	}

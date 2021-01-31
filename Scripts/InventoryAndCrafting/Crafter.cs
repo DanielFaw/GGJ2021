@@ -133,7 +133,32 @@ public class Crafter : Node
 		}
 		return craftableItems;
 	}
-	
+
+
+	public int[] CheckCraftingArray(List<int> playerInventory)
+	{
+
+		PlayerInventory inv = (PlayerInventory)GetNode("/root/PlayerInventory");
+
+		List<int> convertedInventory = new List<int>();
+		foreach(KeyValuePair<int, int> item in inv.Inventory)
+		{
+			convertedInventory.Add(item.Value);
+			convertedInventory.Add(item.Key);
+		}
+
+		List<int> craftableItems = CheckCrafting(convertedInventory);
+
+		int[] craftableArray = new int[craftableItems.Count];
+		for(int i = 0; i < craftableItems.Count; i++)
+		{
+			craftableArray[i] = craftableItems[i];
+		}
+
+		GD.Print(" C# calculated " + craftableArray.Length + " craftable items");
+		return craftableArray;
+		
+	}
 	
 	public bool CheckCrafting(int itemId, List<int> playerInventory)
 	{

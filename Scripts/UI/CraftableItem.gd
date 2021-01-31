@@ -2,11 +2,11 @@ extends Control
 
 
 var label;
-
 var itemId;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	label = $CenterContainer/Label;
+	label = find_node("Label",true);
 	pass # Replace with function body.
 
 func SetInfo(var labelText:String,var itemId:int):

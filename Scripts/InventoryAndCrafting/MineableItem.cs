@@ -8,6 +8,8 @@ public class MineableItem : Node
 	[Export] int itemIdDropped = 0;
 	bool isMining;
 
+	Node miningLaser;
+
 	[Signal]
 	public delegate void ResourceMined();
 
@@ -16,10 +18,10 @@ public class MineableItem : Node
 
 	//The amount of time in seconds between resource drops
 	[Export] float timeBetweenDrops;
-	public async void MineResource(float miningPower)
+	public async void MineResource(float miningPower,Node laser)
 	{
 		isMining = true;
-
+		miningLaser = laser;
 		//Calculate how fast the resource can be mined with a given tool
 		
 		float miningSpeed = timeBetweenDrops / miningPower;
@@ -59,8 +61,12 @@ public class MineableItem : Node
 		}
 		else
 		{
+			miningLaser.Call("ResourceDestroyed");
 			EmitSignal(nameof(ResourceDepleted));
-			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+			this.Set("visible",false);
+			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
+
+			
 
 			//Destroy resource node
 			if(!IsQueuedForDeletion())

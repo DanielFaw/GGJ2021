@@ -45,6 +45,7 @@ func ChangeState(var newState:int):
 		cameraController.ToggleCursor(true);
 
 		#Show crafting UI
+		craftingUI.UpdateCraftables();
 		craftingUI.visible = true;
 
 		inventoryUI.visible = true;

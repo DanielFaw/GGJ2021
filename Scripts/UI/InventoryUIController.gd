@@ -26,13 +26,11 @@ func _ready():
 	#Add 42 slots to openSlots
 
 	for i in range(42):
-		print(i);
 		var newItem = INVENTORYITEM.instance();
 		container.add_child(newItem);
 		openSlots.append(newItem);
 		pass;
 
-	print("Created " + str(openSlots.size()) + " inventory slots");
 	pass # Replace with function body.
 
 func _process(delta):
@@ -45,16 +43,13 @@ func _process(delta):
 
 	#Open inventory
 	if(Input.is_action_just_pressed("player_inventory") && StateController.currentState == 2):
-		print("Opened inventory");
 		StateController.ChangeState(1);
 
 	elif(Input.is_action_just_pressed("player_inventory") && StateController.currentState == 1):
-		print("Opened inventory");
 		StateController.ChangeState(2)
 
 func HideItemDescription(var itemIdIn):
 	currentHoveredItem = null;
-	print("Showing Item " + str(itemIdIn));
 	pass;
 
 func ShowItemDescription(var itemIdIn):

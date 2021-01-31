@@ -21,7 +21,7 @@ func _process(delta):
 			StateController.ChangeState(2);
 
 	#Stop Crafting
-	elif(playerInCraftingArea && StateController.currentState ==2):
+	elif(playerInCraftingArea && StateController.currentState == 2):
 		if(Input.is_action_just_pressed("player_interact") || Input.is_action_just_pressed("ui_cancel")):
 			StateController.ChangeState(0);
 		pass;
@@ -33,7 +33,6 @@ func bodyEntered(body):
 		playerInCraftingArea = true;
 	pass # Replace with function body.
 	
-
 
 func bodyExit(var bodyExited):
 	if((bodyExited as PLAYERCONTROLLER) != null):

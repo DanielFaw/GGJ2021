@@ -1,40 +1,41 @@
 extends Control
 
-
-export var materialDict = {};
-
-const MATERIALUI = preload("res://Scripts/UI/MaterialDisplay.gd");
 const CRAFTABLEITEMINFO = preload("res://Scripts/UI/CraftableItem.gd");
 const CRAFTABLEITEMDISPLAY = preload("res://Prefabs/UIPrefabs/ItemDisplay.tscn");
 
 var craftableItems;
-
+var craftableDisplay = [];
 func _ready():
 	StateController.craftingUI = self;
 	craftableItems = $CraftableItems/VBoxContainer/ScrollContainer/VBoxContainer;
 	UpdateCraftables();
-	
-	pass # Replace with function body.
 
+	#DEBUG
+	PlayerInventory.AddItem(10,1);
+	PlayerInventory.AddItem(10,2);
+	pass # Replace with function body.
 #TODO: Add UI logic
 func UpdateCraftables():
 
+	#Clear oldOnes
+	for i in craftableDisplay:
+		craftableItems.remove_child(i);
+
 	var playerInventory = PlayerInventory.Inventory;
-	##Populate Materials items
-	#for i in materialDict.keys():
-	#	var materialDisplay = (get_node(materialDict[i]) as MATERIALUI);
-	#	materialDisplay.SetLabel(GlobalItemList.RetrieveItemName(i));
-	#	materialDisplay.UpdateAmount(PlayerInventory.GetAmountOfItem(i));
+	var craftableItems = Crafter.CheckCraftingArray(playerInventory);
 
-
-	var craftableItems = Crafter.CheckCrafting(playerInventory);
+	print(" Craftable items:" + str(craftableItems.size()));
+	
 
 	for c in craftableItems:
 		var itemId = c;
+		print(str(itemId));
 		var newCraftable = CRAFTABLEITEMDISPLAY.instance();
-		var craftableDisplay = (newCraftable as CRAFTABLEITEMINFO);
-		craftableItems.SetData(GlobalItemList.RetrieveItemName(itemId),PlayerInventory.GetAmountOfItem(itemId));
+		var craftableItem = (newCraftable as CRAFTABLEITEMINFO);
+		craftableItem.SetInfo(GlobalItemList.RetrieveItemName(c),itemId);
 		craftableItems.add_child(newCraftable);
+
+		craftableDisplay.append(newCraftable);
 		
 
 	pass # Replace with function body.

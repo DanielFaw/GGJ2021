@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Objects/WorldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Textures/Shadow.png" type="Texture" id=9]
 [ext_resource path="res://Prefabs/StaticFakeShadow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/ShipParts/Ship_Repaired.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Prefabs/UIPrefabs/ItemDisplay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://MiscArt/Fonts/Avara_Dynamic_Large.tres" type="DynamicFont" id=13]
 [ext_resource path="res://sprites/UI/PopupBackground.png" type="Texture" id=14]
 [ext_resource path="res://sprites/UI/PopupBackground_Craft.png" type="Texture" id=15]
@@ -20,6 +19,8 @@
 [ext_resource path="res://Prefabs/Materials/Rock_Resource.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scripts/UI/InventoryUIController.gd" type="Script" id=19]
 [ext_resource path="res://MiscArt/Fonts/Avara_Dynamic.tres" type="DynamicFont" id=20]
+[ext_resource path="res://sprites/UI/PopupBackground_Repair.png" type="Texture" id=21]
+[ext_resource path="res://Scripts/Progression/ShipRepair.gd" type="Script" id=22]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -63,7 +64,7 @@ albedo_texture = ExtResource( 9 )
 material = SubResource( 6 )
 
 [sub_resource type="SphereShape" id=8]
-radius = 2.10788
+radius = 0.751711
 
 [node name="MainScene" type="Spatial"]
 
@@ -77,12 +78,12 @@ transform = Transform( 13.2751, 0, 0, 0, 13.2751, 0, 0, 0, 13.2751, 0.0618095, 1
 environment = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 2.21174, 0, 0, 0, 2.21174, 0, 0, 0, 2.21174, 0, 32.9292, 0 )
+transform = Transform( 2.21174, 0, 0, 0, 2.21174, 0, 0, 0, 2.21174, -0.491387, 32.4127, 3.64155 )
 collision_mask = 1
 jumpPower = 2.0
 
 [node name="ThirdPersonCamera" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034658, 30.5675, -0.0400496 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.456729, 30.5675, 3.6015 )
 
 [node name="Decoration" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825576, 14.3549, -1.54062 )
@@ -3485,6 +3486,22 @@ collision_mask = 3
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15103, 0, 0 )
 shape = SubResource( 8 )
 
+[node name="RepairArea" type="Area" parent="ShipDisplay"]
+transform = Transform( 2.78599, 0, 0, 0, 2.78599, 0, 0, 0, 2.78599, -2.22838, 0, 1.04898 )
+collision_mask = 3
+script = ExtResource( 22 )
+signPath = NodePath("Sprite3D")
+
+[node name="CollisionShape" type="CollisionShape" parent="ShipDisplay/RepairArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.269729, 0, -0.403423 )
+shape = SubResource( 8 )
+
+[node name="Sprite3D" type="Sprite3D" parent="ShipDisplay/RepairArea"]
+transform = Transform( 0.358939, 0, 0, 0, 0.358939, 0, 0, 0, 0.358939, 0.0884608, 0.39756, -0.400009 )
+visible = false
+billboard = 1
+texture = ExtResource( 21 )
+
 [node name="CraftingPopup" type="Spatial" parent="ShipDisplay"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.330916, 0, 2.49516 )
 script = ExtResource( 16 )
@@ -3521,13 +3538,6 @@ script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-materialDict = {
-1: NodePath("Material List/VerticalLayout/VBoxContainer/Wood"),
-2: NodePath("Material List/VerticalLayout/VBoxContainer/Stone"),
-3: NodePath("Material List/VerticalLayout/VBoxContainer/Metal1"),
-4: NodePath("Material List/VerticalLayout/VBoxContainer/Metal2"),
-5: NodePath("Material List/VerticalLayout/VBoxContainer/Meteorite")
-}
 
 [node name="CraftableItems" type="Control" parent="PlayerUi/MarginContainer/CraftingUi"]
 anchor_left = 1.0
@@ -3553,7 +3563,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="PlayerUi/MarginContainer/CraftingUi/CraftableItems/VBoxContainer"]
-margin_right = 177.0
+margin_right = 184.0
 margin_bottom = 31.0
 custom_fonts/font = ExtResource( 13 )
 text = "Items"
@@ -3562,7 +3572,7 @@ valign = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PlayerUi/MarginContainer/CraftingUi/CraftableItems/VBoxContainer"]
 margin_top = 35.0
-margin_right = 177.0
+margin_right = 184.0
 margin_bottom = 370.0
 rect_min_size = Vector2( 171, 335 )
 mouse_filter = 2
@@ -3570,12 +3580,8 @@ scroll_horizontal_enabled = false
 scroll_horizontal = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerUi/MarginContainer/CraftingUi/CraftableItems/VBoxContainer/ScrollContainer"]
-margin_right = 172.0
-margin_bottom = 60.0
 mouse_filter = 2
 alignment = 1
-
-[node name="ItemDisplay6" parent="PlayerUi/MarginContainer/CraftingUi/CraftableItems/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 12 )]
 
 [node name="Inventory" type="Control" parent="PlayerUi/MarginContainer"]
 visible = false
@@ -3630,7 +3636,7 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 211.0
-margin_bottom = 81.0
+margin_bottom = 74.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3663,6 +3669,9 @@ __meta__ = {
 }
 [connection signal="body_entered" from="ShipDisplay/Area" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
 [connection signal="body_exited" from="ShipDisplay/Area" to="ShipDisplay/CraftingPopup" method="bodyExit"]
+[connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
+[connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/RepairArea" method="bodyEntered"]
+[connection signal="body_exited" from="ShipDisplay/RepairArea" to="ShipDisplay/CraftingPopup" method="bodyExit"]
 [connection signal="visibility_changed" from="PlayerUi/MarginContainer/CraftingUi/CraftableItems" to="PlayerUi/MarginContainer/CraftingUi" method="UpdateCraftables"]
 
 [editable path="World"]

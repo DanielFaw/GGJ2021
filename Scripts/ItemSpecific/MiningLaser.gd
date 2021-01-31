@@ -25,7 +25,7 @@ func _process(delta):
 	if(Input.is_action_just_pressed("player_fire_left")):
 		if(currentResource != null):
 			#Start mining the resource
-			currentResource.MineResource(miningPower);
+			currentResource.MineResource(miningPower,self);
 		else:
 			#Prevent player from mining resource after walking away
 			if(previousResource != null):
@@ -42,8 +42,9 @@ func TakeDamage():
 	print("Laser Took damage!");
 
 func ResourceDestroyed():
-	currentResource.disconnect("ResourceDepleted",self,"ResourcedDestroyed");
-	currentResource.disconnect("ResourceMined",self,"TakeDamage");
+	if(currentResource != null):
+		currentResource.disconnect("ResourceDepleted",self,"ResourcedDestroyed");
+		currentResource.disconnect("ResourceMined",self,"TakeDamage");
 
 
 func BodyEnter(var body):
@@ -52,7 +53,7 @@ func BodyEnter(var body):
 	if((parent as RESOURCE) != null && currentResource == null):
 		currentResource = (parent as RESOURCE);
 		currentResource.connect("ResourceMined",self,"TakeDamage");
-		currentResource.connect("tree_exiting",self,"ResourcedDestroyed");
+		#currentResource.connect("tree_exiting",self,"ResourcedDestroyed");
 		if(previousResource == null):
 			previousResource = currentResource;
 	pass;
