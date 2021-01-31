@@ -8,6 +8,7 @@
 [ext_resource path="res://Scripts/VisEffects/PlayerSpriteSwap.gd" type="Script" id=6]
 [ext_resource path="res://Models/WeaponsAndTools/MiningLaser.glb" type="PackedScene" id=7]
 [ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=8]
+[ext_resource path="res://Scripts/InventoryAndCrafting/PlayerInventory.cs" type="Script" id=9]
 [ext_resource path="res://Prefabs/Tools/StoneLaser.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CapsuleShape" id=1]
@@ -77,6 +78,9 @@ material/0 = ExtResource( 8 )
 
 [node name="CrafterScript" type="Spatial" parent="."]
 script = ExtResource( 1 )
+
+[node name="InventoryScript" type="Spatial" parent="."]
+script = ExtResource( 9 )
 
 [editable path="_VIS/Hands/LeftHand/MiningLaser"]
 
