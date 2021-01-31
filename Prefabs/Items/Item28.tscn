@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/InventoryAndCrafting/ItemInfo.cs" type="Script" id=1]
+[ext_resource path="res://sprites/itemsprites/itemicon28.png" type="Texture" id=2]
+
+[node name="ItemID" type="Spatial"]
+
+[node name="IDScript" type="Spatial" parent="."]
+script = ExtResource( 1 )
+itemName = "Radioactive Shell"
+itemId = 28
+itemIcon = ExtResource( 2 )
+description = "Don't touch it for too long, you might get sick!"
+
+[node name="body" type="Spatial" parent="."]

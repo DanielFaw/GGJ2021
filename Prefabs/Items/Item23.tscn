@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/InventoryAndCrafting/ItemInfo.cs" type="Script" id=1]
+[ext_resource path="res://sprites/itemsprites/itemicon23.png" type="Texture" id=2]
+
+[node name="ItemID" type="Spatial"]
+
+[node name="IDScript" type="Spatial" parent="."]
+script = ExtResource( 1 )
+itemName = "Bronze Shield"
+itemId = 23
+itemIcon = ExtResource( 2 )
+description = "I swear it isn't gold! Stop thinking that!"
+
+[node name="body" type="Spatial" parent="."]

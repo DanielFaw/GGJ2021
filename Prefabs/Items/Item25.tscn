@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/InventoryAndCrafting/ItemInfo.cs" type="Script" id=1]
+[ext_resource path="res://sprites/itemsprites/itemicon25.png" type="Texture" id=2]
+
+[node name="ItemID" type="Spatial"]
+
+[node name="IDScript" type="Spatial" parent="."]
+script = ExtResource( 1 )
+itemName = "Meteorite Shield"
+itemId = 25
+itemIcon = ExtResource( 2 )
+description = "Offers the most protection and faster pulses."
+
+[node name="body" type="Spatial" parent="."]
