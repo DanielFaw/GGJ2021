@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Objects/WorldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
@@ -28,6 +28,8 @@
 [ext_resource path="res://Objects/ShipParts/IndividualParts/Booster.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Prefabs/ShipParts/Parts/NavModule.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Prefabs/ShipParts/Parts/SidePannel.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Prefabs/ShipParts/Parts/Radio.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Prefabs/ShipParts/Parts/FuelTank.tscn" type="PackedScene" id=30]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -3723,10 +3725,16 @@ transform = Transform( 1, 0, 0, 0, 0.640914, 0.767613, 0, -0.767613, 0.640914, -
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 193.467, 54.3514, -10.5423 )
 
 [node name="NavModule" parent="Parts" instance=ExtResource( 27 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 141.428, 64.1616, 138.227 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5699, 26.9843, 20.708 )
 
 [node name="SidePannel" parent="Parts" instance=ExtResource( 28 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6466, 26.696, 21.0666 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48.9706, 67.2428, 227.722 )
+
+[node name="Radio" parent="Parts" instance=ExtResource( 29 )]
+transform = Transform( 0.802786, -0.596267, 0, 0.596267, 0.802786, 0, 0, 0, 1, -133.243, 15.7505, 14.0708 )
+
+[node name="FuelTank" parent="Parts" instance=ExtResource( 30 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -142.941, 35.5747, -140.007 )
 [connection signal="body_entered" from="ShipDisplay/Crafting" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
 [connection signal="body_exited" from="ShipDisplay/Crafting" to="ShipDisplay/CraftingPopup" method="bodyExit"]
 [connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/RepairArea" method="bodyEntered"]
