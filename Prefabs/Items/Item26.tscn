@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/InventoryAndCrafting/ItemInfo.cs" type="Script" id=1]
+[ext_resource path="res://sprites/itemsprites/itemicon26.png" type="Texture" id=2]
+
+[node name="ItemID" type="Spatial"]
+
+[node name="IDScript" type="Spatial" parent="."]
+script = ExtResource( 1 )
+itemName = "Goo"
+itemId = 26
+itemIcon = ExtResource( 2 )
+description = "Of course it still has bits in it. Do other games have you strain it before putting it in your backpack? Who has time for that?"
+
+[node name="body" type="Spatial" parent="."]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/InventoryAndCrafting/ItemInfo.cs" type="Script" id=1]
+[ext_resource path="res://sprites/itemsprites/itemicon24.png" type="Texture" id=2]
+
+[node name="ItemID" type="Spatial"]
+
+[node name="IDScript" type="Spatial" parent="."]
+script = ExtResource( 1 )
+itemName = "Mithril Shield"
+itemId = 24
+itemIcon = ExtResource( 2 )
+description = "Realm of the Mad God reference?"
+
+[node name="body" type="Spatial" parent="."]
