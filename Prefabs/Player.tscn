@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/InventoryAndCrafting/Crafter.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/VisEffects/FakeShadow.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scripts/VisEffects/PlayerSpriteSwap.gd" type="Script" id=6]
 [ext_resource path="res://Models/WeaponsAndTools/MiningLaser.glb" type="PackedScene" id=7]
 [ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=8]
+[ext_resource path="res://Scripts/InventoryAndCrafting/PlayerInventory.cs" type="Script" id=9]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.193086
@@ -35,7 +36,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138971, 0 )
 billboard = 2
 frames = ExtResource( 4 )
 animation = "back"
-frame = 3
 playing = true
 script = ExtResource( 6 )
 
@@ -78,6 +78,9 @@ material/0 = ExtResource( 8 )
 
 [node name="CrafterScript" type="Spatial" parent="."]
 script = ExtResource( 1 )
+
+[node name="InventoryScript" type="Spatial" parent="."]
+script = ExtResource( 9 )
 
 [editable path="_VIS/Hands/LeftHand/MiningLaser"]
 

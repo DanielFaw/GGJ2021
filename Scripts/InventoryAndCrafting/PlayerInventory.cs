@@ -12,6 +12,7 @@ public class PlayerInventory : Node
 	{
 		inventory = new Dictionary<int, int>();
 		craftRef = GetNode("../CrafterScript") as Crafter;
+		GD.Print("Inventory working!");
 		SetInventory();
 	}
 
@@ -26,7 +27,42 @@ public class PlayerInventory : Node
 		//Add whatever the player starts out with here
 	}
 
-	private void PrintInventory()
+	float temp = 0;
+    public override void _Process(float delta)
+    {
+		
+		temp += delta;
+		if(temp > 3f)
+        {
+			//Print out a few things
+			if(ItemList.Instance.RetrieveItemName(2) == null)
+            {
+				GD.Print("Item retrieval failed");
+				return;
+            }
+			string one = ItemList.Instance.RetrieveItemName(2);
+			string two = ItemList.Instance.RetrieveItemDescription(7);
+			string three = ItemList.Instance.RetrieveItemDescription(5);
+			if (one == null)
+			{
+				GD.Print("String1 was null");
+			}
+			else if (two == null)
+			{
+				GD.Print("String2= was null");
+			}
+			else if (three == null)
+			{
+				GD.Print("String3 was null");
+			}
+			GD.Print(one);
+			GD.Print(two);
+			GD.Print(three);
+			temp = -1000;
+        }
+    }
+
+    private void PrintInventory()
 	{
 		foreach(KeyValuePair<int, int> item in inventory)
 		{
