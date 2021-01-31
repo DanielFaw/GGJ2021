@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/InventoryAndCrafting/ItemInfo.cs" type="Script" id=1]
+[ext_resource path="res://sprites/itemsprites/itemicon9.png" type="Texture" id=2]
 
 [node name="ItemID" type="Spatial"]
 
@@ -8,6 +9,7 @@
 script = ExtResource( 1 )
 itemName = "Bronze Drill"
 itemId = 9
+itemIcon = ExtResource( 2 )
 description = "A drill made of metal! this one can cut through even harder metals"
 
 [node name="body" type="Spatial" parent="."]
