@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Objects/WorldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
@@ -23,6 +23,11 @@
 [ext_resource path="res://sprites/UI/PopupBackground_Repair.png" type="Texture" id=21]
 [ext_resource path="res://Scripts/Progression/ShipRepair.gd" type="Script" id=22]
 [ext_resource path="res://UI/ButtonStyle.tres" type="StyleBox" id=23]
+[ext_resource path="res://Prefabs/Enemies/RadioactiveCrab.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Prefabs/ShipParts/Parts/CockpitWindow.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Objects/ShipParts/IndividualParts/Booster.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Prefabs/ShipParts/Parts/NavModule.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Prefabs/ShipParts/Parts/SidePannel.tscn" type="PackedScene" id=28]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -66,7 +71,7 @@ albedo_texture = ExtResource( 9 )
 material = SubResource( 6 )
 
 [sub_resource type="SphereShape" id=8]
-radius = 0.751711
+radius = 0.803916
 
 [node name="MainScene" type="Spatial"]
 
@@ -3307,7 +3312,7 @@ transform = Transform( -0.430206, 0, -0.250135, 0, 0.497639, 0, 0.250135, 0, -0.
 transform = Transform( -0.430206, 0, -0.250135, 0, 0.497639, 0, 0.250135, 0, -0.430206, 50.1899, 50.7767, 154.601 )
 
 [node name="ShipDisplay" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8349, 31.0968, -3.72383 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8349, 31.0031, -3.72383 )
 script = ExtResource( 8 )
 repariableParts = {
 41: NodePath("Repaired/Ship_Repaired/ShipRepairedParts/RepairedParts/CockpitWindow_Repaired"),
@@ -3480,27 +3485,29 @@ transform = Transform( 1, -2.62953e-08, 1.62981e-09, -1.14887e-08, 1, -1.49012e-
 [node name="ShadowSprite" parent="ShipDisplay/Repaired/StaticFakeShadow" index="1"]
 transform = Transform( 3.59285, 0, 0, 0, 0.650689, 3.52133, 0, -3.53317, 0.648508, 0, 0, 0 )
 
-[node name="Area" type="Area" parent="ShipDisplay"]
+[node name="Crafting" type="Area" parent="ShipDisplay"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.330916, 0, 2.49516 )
 collision_mask = 3
 
-[node name="CollisionShape" type="CollisionShape" parent="ShipDisplay/Area"]
+[node name="CollisionShape" type="CollisionShape" parent="ShipDisplay/Crafting"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15103, 0, 0 )
 shape = SubResource( 8 )
 
 [node name="RepairArea" type="Area" parent="ShipDisplay"]
-transform = Transform( 2.78599, 0, 0, 0, 2.78599, 0, 0, 0, 2.78599, -2.22838, 0, 1.04898 )
+transform = Transform( 2.78599, 0, 0, 0, 2.78599, 0, 0, 0, 2.78599, -2.72278, 0, 1.04898 )
 collision_mask = 3
 script = ExtResource( 22 )
-signPath = NodePath("Sprite3D")
+signPath = NodePath("RepairSign")
 
 [node name="CollisionShape" type="CollisionShape" parent="ShipDisplay/RepairArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.269729, 0, -0.403423 )
 shape = SubResource( 8 )
 
-[node name="Sprite3D" type="Sprite3D" parent="ShipDisplay/RepairArea"]
-transform = Transform( 0.358939, 0, 0, 0, 0.358939, 0, 0, 0, 0.358939, 0.0884608, 0.39756, -0.400009 )
+[node name="RepairSign" type="Spatial" parent="ShipDisplay/RepairArea"]
 visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="ShipDisplay/RepairArea/RepairSign"]
+transform = Transform( 0.358939, 0, 0, 0, 0.358939, 0, 0, 0, 0.358939, 0.0884608, 0.397561, -0.400009 )
 billboard = 1
 texture = ExtResource( 21 )
 
@@ -3703,9 +3710,25 @@ clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="body_entered" from="ShipDisplay/Area" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
-[connection signal="body_exited" from="ShipDisplay/Area" to="ShipDisplay/CraftingPopup" method="bodyExit"]
-[connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
+
+[node name="RadioactiveCrab" parent="." instance=ExtResource( 24 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.40233, 31.2579, 3.12047 )
+
+[node name="Parts" type="Spatial" parent="."]
+
+[node name="CockpitWindow" parent="Parts" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 0.640914, 0.767613, 0, -0.767613, 0.640914, -55.3409, 29.9994, -250.808 )
+
+[node name="Booster" parent="Parts" instance=ExtResource( 26 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 193.467, 54.3514, -10.5423 )
+
+[node name="NavModule" parent="Parts" instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 141.428, 64.1616, 138.227 )
+
+[node name="SidePannel" parent="Parts" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6466, 26.696, 21.0666 )
+[connection signal="body_entered" from="ShipDisplay/Crafting" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
+[connection signal="body_exited" from="ShipDisplay/Crafting" to="ShipDisplay/CraftingPopup" method="bodyExit"]
 [connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/RepairArea" method="bodyEntered"]
 [connection signal="body_exited" from="ShipDisplay/RepairArea" to="ShipDisplay/CraftingPopup" method="bodyExit"]
 [connection signal="visibility_changed" from="PlayerUi/MarginContainer/CraftingUi/CraftableItems" to="PlayerUi/MarginContainer/CraftingUi" method="UpdateCraftables"]
@@ -3718,3 +3741,5 @@ __meta__ = {
 [editable path="ShipDisplay/Repaired/Ship_Repaired/ShipRepairedParts"]
 
 [editable path="ShipDisplay/Repaired/StaticFakeShadow"]
+
+[editable path="RadioactiveCrab"]

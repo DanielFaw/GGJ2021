@@ -6,7 +6,7 @@ using System;
 //but won't run away from you
 
 
-public class enemyAi : Node
+public class enemyAi : KinematicBody
 {
     bool isIdle = true;
     [Export] public float attackRange = 10f;
@@ -16,17 +16,30 @@ public class enemyAi : Node
     [Export] public int health = 30;
     [Export] public int itemIdDroppedOnDeath = 1;
 
+
+    [Export] public float gravity = 4.0f;
+
+    [Export] public float moveSpeed;
+    [Export] public float acceleration;
     //Hardcoding for 8 rays to be cast out to determine distances and stuff
     private float rayLength = 3f;
     private float timer = 0f;
     private float distanceToPlayer;
     private Vector3 currentVector;
 
+    public KinematicBody player;
+
+    [Export] public NodePath visPath;
+    [Export] public Spatial visObject;
+
     public enemyspawning homeSpawner;
 
     public override void _Ready()
     {
-        
+        visObject = (Spatial)GetNode(visPath);
+        player = (KinematicBody)GetTree().GetCurrentScene().FindNode("Player",true,true);
+
+        //GD.Print(player);
     }
 
     public void SetHomeSpawner(enemyspawning home)
@@ -36,6 +49,11 @@ public class enemyAi : Node
 
     public override void _Process(float delta)
     {
+        DistanceToPlayer();
+        Node util = (Node)GetNode("/root/Utilities");
+
+        util.Call("CorrectJitter",delta,currentVector,visObject,(Spatial)this);
+
         if(!isIdle)
         {
             timer += delta;
@@ -44,12 +62,12 @@ public class enemyAi : Node
                 timer = 0;
                 RayCastCheck();
             }
-
-            if(distanceToPlayer > 3f)
-            {
-                Movement();
-            }
             AttackPlayer(delta);
+
+            if(distanceToPlayer >= 25f)
+            {
+                isIdle = true;
+            }
 
         }
         else
@@ -63,9 +81,51 @@ public class enemyAi : Node
 
     }
 
-    private void Movement()
+    public override void _PhysicsProcess(float delta)
     {
-        //Just do rigidbody movement stuff here, using the current vector as the movement vector, maybe with some smoothing inbetween
+        //base._PhysicsProcess(delta);
+
+        if(!isIdle)
+        {
+            if(distanceToPlayer > 1f)
+            {
+                Movement(delta);
+            }
+            else{
+                //GD.Print(distanceToPlayer);
+                }
+        }
+        
+    }
+
+    private void Movement(float delta)
+    {
+           //Just do rigidbody movement stuff here, using the current vector as the movement vector, maybe with some smoothing inbetween
+        currentVector = (player.GlobalTransform.origin - this.GlobalTransform.origin);
+        currentVector.y -= delta * gravity;
+
+        if(this.IsOnFloor())
+        {
+           currentVector.y = - 0.2f;
+        }
+
+       Vector3 horizontalVel = currentVector;
+       horizontalVel.y = 0;
+
+       Vector3 newPos = currentVector.Normalized() * moveSpeed;
+
+        horizontalVel = horizontalVel.LinearInterpolate(newPos,acceleration * delta);
+
+        currentVector.x = horizontalVel.x;
+	    currentVector.z = horizontalVel.z;
+        
+
+        //GD.Print(currentVector);
+
+
+        //Apply movement
+        MoveAndSlide(currentVector,Vector3.Up);
+
     }
 
     private void RayCastCheck()
@@ -96,7 +156,7 @@ public class enemyAi : Node
         }
 
         //find out which raycast is the longest
-        //if (raycast.GetCollider != null)
+        //if (raycast.GetCollider() != null)
         //    distance = raycast.GetCollisionPoint - this.position
         //else
         //    distance = whatever value was in the array above
@@ -133,6 +193,8 @@ public class enemyAi : Node
     private void DistanceToPlayer()
     {
         //honestly idk how to get this, its currently 6:36am
+        //TODO: replace with playerpos
+        distanceToPlayer = Mathf.Abs((this.GlobalTransform.origin - player.GlobalTransform.origin).Length());
     }
 
     public void TakeDamage(int amount)

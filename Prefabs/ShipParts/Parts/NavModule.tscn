@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Objects/ShipParts/IndividualParts/NavModule.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/InventoryAndCrafting/PickupItem.gd" type="Script" id=2]
+
+[sub_resource type="SphereShape" id=1]
+radius = 2.08028
+
+[node name="NavModule" type="Spatial"]
+script = ExtResource( 2 )
+itemId = 43
+
+[node name="NavModule" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.215383, -0.97653, 0, 0.97653, 0.215383, 0, 0, 0, 1, -0.0243421, 0.568838, -0.0209541 )
+
+[node name="Area" type="Area" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="Area" to="." method="BodyEnter"]

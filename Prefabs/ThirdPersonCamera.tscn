@@ -9,7 +9,7 @@ radius = 0.5
 [node name="ThirdPersonCamera" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00459, 0 )
 script = ExtResource( 1 )
-moveSpeed = 10.0
+moveSpeed = 40.0
 pivotObjectPath = NodePath("../Player")
 minYAngle = -60.0
 maxYAngle = 50.0

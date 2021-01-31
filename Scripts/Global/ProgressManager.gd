@@ -4,7 +4,7 @@ var visualShip;
 var shipComplete = false;
 
 #Item id's of all repairable parts
-var repairableParts = [1,2,3,4,5,6]
+var repairableParts = [41,42,43,44,45,46]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +17,6 @@ func RepairPart(var partId:int) -> bool:
 	if(repairableParts.has(partId)):
 		visualShip.RepairPart(partId);
 		return true;
-
 
 	return false;
 	pass;
