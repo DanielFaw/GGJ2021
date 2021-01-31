@@ -37,7 +37,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138971, 0 )
 billboard = 2
 frames = ExtResource( 4 )
 animation = "back"
+<<<<<<< HEAD
 frame = 2
+=======
+frame = 1
+>>>>>>> parent of abb1239... Added laser effects, basic resource logic
 playing = true
 script = ExtResource( 6 )
 
@@ -68,7 +72,6 @@ transform = Transform( 0.144115, 0, 0, 0, 0.144115, 0, 0, 0, 0.144115, 0, 0, 0 )
 
 [node name="RightHand" type="Spatial" parent="_VIS/Hands"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10579, -0.0355268, 8.32975e-06 )
-visible = false
 
 [node name="MiningLaser2" parent="_VIS/Hands/RightHand" instance=ExtResource( 7 )]
 transform = Transform( -2.5564e-09, 0, 0.0584837, 0, 0.0584837, 0, -0.0584837, 0, -2.5564e-09, 0, 0, 0 )

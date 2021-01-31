@@ -6,22 +6,32 @@ export var miningPower:float = 1;
 
 var previousResource;
 var currentResource;
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of abb1239... Added laser effects, basic resource logic
 
 var beam;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+<<<<<<< HEAD
 	beam = $Beam;
+=======
+>>>>>>> parent of abb1239... Added laser effects, basic resource logic
 	pass # Replace with function body.
 
 
 func _process(delta):
+<<<<<<< HEAD
 
 	if(currentResource != null && currentResource.isMining):
 		beam.visible = true;
 	else:
 		beam.visible = false;
 
+=======
+>>>>>>> parent of abb1239... Added laser effects, basic resource logic
 	if(Input.is_action_just_pressed("player_fire_right")):
 		if(currentResource != null):
 			#Start mining the resource

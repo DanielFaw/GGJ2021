@@ -51,7 +51,7 @@ func _process(delta):
 	if(enabled):
 		#if(direction == Vector3.ZERO):
 		#	#Match hands with camera
-		hands.rotation.x = cameraPivot.rotation.x;
+		#	hands.rotation = cameraPivot.rotation - visObject.rotation + handEndRot;
 		#else:
 		#	hands.look_at(hands.global_transform.origin + direction.normalized(),Vector3.UP);
 		#	handEndRot = hands.rotation;
@@ -61,25 +61,15 @@ func _process(delta):
 			if(!queueJump):
 				queueJump = true;
 
-
-		if(Input.is_action_pressed("player_fire_left") || Input.is_action_pressed("player_fire_right")):
-		
-			var targetPoint = visObject.global_transform.origin - cameraPivot.global_transform.basis.z;
-			targetPoint.y = visObject.global_transform.origin.y;
-
-			#Look towards target
-			if(targetPoint != visObject.global_transform.origin):
-				visObject.look_at(targetPoint,Vector3.UP);
-	
-
 		#Look in direction
-		elif(direction != Vector3.ZERO):
-			var targetPoint =visObject.global_transform.origin + Vector3(velocity.x,0,velocity.z);
+		if(direction != Vector3.ZERO):
 			#TODO: Fix terrible jitter when player slides along wall
+			
+			var targetPoint = visObject.global_transform.origin + Vector3(velocity.normalized().x,0,velocity.normalized().z);
 			if(targetPoint != visObject.global_transform.origin):
 				visObject.look_at(targetPoint,Vector3.UP);
 
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
