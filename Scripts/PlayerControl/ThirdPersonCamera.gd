@@ -64,7 +64,7 @@ func _input(event):
 		mouseInput = event.relative
 	
 	if(event is InputEventMouseButton):
-		if(event.button_index == BUTTON_LEFT && event.pressed && StateController.currentState ==1):
+		if(event.button_index == BUTTON_LEFT && event.pressed && StateController.currentState == 2):
 			ToggleCursor(false);
 	
 	if(event is InputEventKey):

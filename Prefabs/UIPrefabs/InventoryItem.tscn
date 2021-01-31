@@ -8,6 +8,7 @@
 margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
+mouse_filter = 1
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -37,6 +38,7 @@ margin_bottom = 39.787
 rect_min_size = Vector2( 64, 64 )
 rect_scale = Vector2( 0.765706, 0.765706 )
 rect_clip_content = true
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "Just to limit Texture max size"
@@ -73,3 +75,5 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="mouse_entered" from="." to="." method="mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="mouse_exited"]

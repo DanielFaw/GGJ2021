@@ -6,6 +6,10 @@ var amount;
 var sprite;
 var textureDisplay;
 
+signal mouseHovered(itemIdOut);
+signal mouseExited(itemIdOut);
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	amount = $Amount;
@@ -19,6 +23,17 @@ func SetInfo(var itemIdIN:int,var amountOfItem:int, var itemTexture:Texture):
 	itemId = itemIdIN;
 	UpdateAmount(amountOfItem);
 	textureDisplay.texture = itemTexture;
+
+func mouse_entered():
+	if(itemId != null):
+		print("Mouse hovered " + str(itemId));
+		emit_signal("mouseHovered",itemId);
+	pass;
+
+func mouse_exited():
+	if(itemId != null):
+		emit_signal("mouseExited",itemId);
+	pass;
 
 func ClearData():
 	itemId = 0;
