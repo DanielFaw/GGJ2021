@@ -26,7 +26,6 @@ func SetInfo(var itemIdIN:int,var amountOfItem:int, var itemTexture:Texture):
 
 func mouse_entered():
 	if(itemId != null):
-		print("Mouse hovered " + str(itemId));
 		emit_signal("mouseHovered",itemId);
 	pass;
 

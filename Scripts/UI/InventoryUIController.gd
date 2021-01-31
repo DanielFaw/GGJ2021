@@ -67,16 +67,21 @@ func _ItemUpdate(var itemId:int, var newAmount:int):
 			filledSlots[itemId].UpdateAmount(newAmount);
 		else:
 			#Move back to openSlots
-			
+		
+			if(filledSlots[itemId] != null):
+				filledSlots[itemId].ClearData();
 
-			
-			filledSlots[itemId].ClearData();
-			
-			
-			filledSlots[itemId].disconnect("mouse_entered",self,"ShowItemDescription");
-			filledSlots[itemId].disconnect("mouse_exited",self,"HideItemDescription");
-			filledSlots.erase(itemId);
-			openSlots.push(filledSlots[itemId]);
+				#Disconnect the signals
+				if(filledSlots[itemId].get_signal_connection_list("mouseHovered").has(self)):
+					filledSlots[itemId].disconnect("mouseHovered",self,"ShowItemDescription");
+
+				if(filledSlots[itemId].get_signal_connection_list("mouseExited").has(self)):
+					filledSlots[itemId].disconnect("mouseExited",self,"HideItemDescription");
+
+				#Add back into openSlots
+				openSlots.push_front(filledSlots[itemId]);
+				filledSlots.erase(itemId);
+				
 			
 
 			
