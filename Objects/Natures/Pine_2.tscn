@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=1]
 [ext_resource path="res://Models/World/Nature/Pine_2.glb" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/StaticFakeShadow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/AutoGround.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/InventoryAndCrafting/MineableItem.cs" type="Script" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.69787, 4.08486, 1.64397 )
 
 [node name="Pine_2" instance=ExtResource( 2 )]
+script = ExtResource( 5 )
+hardness = 2
+timeBetweenDrops = 2.0
 
 [node name="Pine_2" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000398397 )
