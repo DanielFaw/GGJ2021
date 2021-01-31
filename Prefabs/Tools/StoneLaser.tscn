@@ -25,6 +25,7 @@ input_capture_on_drag = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81312, 0, 0 )
 shape = SubResource( 1 )
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 [node name="LaserTip" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776783, 0.38254, 0 )
@@ -36,6 +37,8 @@ width = 4.64727
 height = 0.166933
 depth = 0.213558
 material = SubResource( 2 )
+=======
+>>>>>>> parent of abb1239... Added laser effects, basic resource logic
 =======
 >>>>>>> parent of abb1239... Added laser effects, basic resource logic
 [connection signal="body_entered" from="Area" to="." method="BodyEnter"]

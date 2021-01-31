@@ -46,6 +46,9 @@ frame = 1
 =======
 frame = 3
 >>>>>>> parent of 823fa93... Fixed laserScript
+=======
+frame = 1
+>>>>>>> parent of abb1239... Added laser effects, basic resource logic
 playing = true
 script = ExtResource( 6 )
 
