@@ -50,10 +50,7 @@ public class Crafter : Node
 		AddRecipe(44, new List<int> { 1, 34, 1, 1 });
 		AddRecipe(45, new List<int> { 1, 35, 1, 1 });
 		AddRecipe(46, new List<int> { 1, 36, 1, 1 });
-		AddRecipe(47, new List<int> { 1, 37, 1, 1 });
-		AddRecipe(48, new List<int> { 1, 38, 1, 1 });
-		AddRecipe(49, new List<int> { 1, 39, 1, 1 });
-		AddRecipe(50, new List<int> { 1, 40, 1, 1 });
+
 	}
 
 	//The formatted array must be as follows:
@@ -109,13 +106,6 @@ public class Crafter : Node
 		{
 			return -1;
 		}
-		
-	}
-	
-	
-	private bool IsMaterial(int IdOfItem)
-	{
-		return recipeDict.ContainsKey(IdOfItem);
 		
 	}
 	

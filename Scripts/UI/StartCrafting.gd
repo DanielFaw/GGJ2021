@@ -18,6 +18,7 @@ func _process(delta):
 	#Start Crafting
 	if(playerInCraftingArea && StateController.currentState == 0 ||StateController.currentState == 1):
 		if(Input.is_action_just_pressed("player_interact")):
+			#You need to 'reseat' the inventory here, like i did in InventoryUIController
 			StateController.ChangeState(2);
 
 	#Stop Crafting
@@ -39,4 +40,6 @@ func bodyExit(var bodyExited):
 		startSign.visible = false;
 		playerInCraftingArea = false;
 	pass;
+	
+
 

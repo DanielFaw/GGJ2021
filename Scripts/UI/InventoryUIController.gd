@@ -44,6 +44,8 @@ func _process(delta):
 	#Open inventory
 	if(Input.is_action_just_pressed("player_inventory") && StateController.currentState == 2):
 		StateController.ChangeState(1);
+		SeatInventory();
+
 
 	elif(Input.is_action_just_pressed("player_inventory") && StateController.currentState == 1):
 		StateController.ChangeState(2)
@@ -65,12 +67,19 @@ func _ItemUpdate(var itemId:int, var newAmount:int):
 			filledSlots[itemId].UpdateAmount(newAmount);
 		else:
 			#Move back to openSlots
-			filledSlots[itemId].ClearData();
-			openSlots.push_front(filledSlots[itemId]);
+			
 
+			
+			filledSlots[itemId].ClearData();
+			
+			
 			filledSlots[itemId].disconnect("mouse_entered",self,"ShowItemDescription");
 			filledSlots[itemId].disconnect("mouse_exited",self,"HideItemDescription");
 			filledSlots.erase(itemId);
+			openSlots.push(filledSlots[itemId]);
+			
+
+			
 	else:
 
 		#Add new slot
@@ -83,3 +92,13 @@ func _ItemUpdate(var itemId:int, var newAmount:int):
 		newSlot.connect("mouseExited",self,"HideItemDescription");
 		
 	pass;
+	
+	
+func SeatInventory():
+	var pInv = PlayerInventory.InvToArray();
+	var counter = 1;
+	for i in range(PlayerInventory.InventoryCount()):
+		_ItemUpdate(pInv[counter], pInv[counter - 1]);
+		counter += 2;
+	pass;
+	

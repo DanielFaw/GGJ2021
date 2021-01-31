@@ -15,8 +15,8 @@ func _ready():
 	UpdateCraftables();
 
 	#DEBUG
-	PlayerInventory.AddItem(10,1);
-	PlayerInventory.AddItem(10,2);
+	#PlayerInventory.AddItem(10,1);
+	#PlayerInventory.AddItem(10,2);
 	pass # Replace with function body.
 #TODO: Add UI logic
 
@@ -27,8 +27,10 @@ func ButtonClicked(var itemId):
 
 func CraftButtonClicked():
 	if(currentlySelectedItem != null):
-		print("crafted " + str(currentlySelectedItem));
-		PlayerInventory.CraftItem(currentlySelectedItem);
+		if(PlayerInventory.CraftItem(currentlySelectedItem)):
+			print("crafted " + str(currentlySelectedItem));
+			UpdateCraftables();
+		
 
 func UpdateCraftables():
 

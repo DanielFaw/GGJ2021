@@ -38,9 +38,27 @@ public class PlayerInventory : Node
 		return 0;
 	}
 
+	public int InventoryCount()
+    {
+		return inventory.Count;
+    }
+
+	public int[] InvToArray()
+    {
+		List<int> convertedInv = InvToList();
+		int[] data = new int[convertedInv.Count];
+		for(int i = 0; i < data.Length; i++)
+        {
+			data[i] = convertedInv[i];
+        }
+		return data;
+    }
+
 	private void SetInventory()
 	{
 		//Add whatever the player starts out with here
+		AddItem(10, 1);
+		AddItem(10,2);
 	}
 
 
@@ -74,9 +92,29 @@ public class PlayerInventory : Node
 			inventory[itemId] -= itemAmount;
 			if (inventory[itemId] < 1)
 			{
+				//Update inventory ui
+				EmitSignal(nameof(ItemUpdate), itemId, 0);
 				inventory.Remove(itemId);
 			}
+			else
+            {
+				//Update inventory ui
+				EmitSignal(nameof(ItemUpdate), itemId, inventory[itemId]);
+			}
+			
+
 		}
+	}
+
+	public List<int> InvToList()
+    {
+		List<int> convertedInventory = new List<int>();
+		foreach (KeyValuePair<int, int> item in inventory)
+		{
+			convertedInventory.Add(item.Value);
+			convertedInventory.Add(item.Key);
+		}
+		return convertedInventory;
 	}
 	
 	/// <summary>
@@ -108,6 +146,8 @@ public class PlayerInventory : Node
 				RemoveItem(recipe[i], recipe[i - 1]);
 			}
 			AddItem(craftRef.AmountCreated(itemId),itemId);
+			GD.Print("New inventory: ");
+			PrintInventory();
 			return true;
 		}
 		else
