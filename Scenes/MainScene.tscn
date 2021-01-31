@@ -3535,6 +3535,7 @@ __meta__ = {
 }
 
 [node name="CraftingUi" type="Control" parent="PlayerUi/MarginContainer"]
+visible = false
 margin_right = 1004.0
 margin_bottom = 580.0
 mouse_filter = 2
@@ -3616,6 +3617,7 @@ __meta__ = {
 }
 
 [node name="Inventory" type="Control" parent="PlayerUi/MarginContainer"]
+visible = false
 margin_right = 1004.0
 margin_bottom = 580.0
 mouse_filter = 2
@@ -3703,8 +3705,8 @@ __meta__ = {
 }
 [connection signal="body_entered" from="ShipDisplay/Area" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
 [connection signal="body_exited" from="ShipDisplay/Area" to="ShipDisplay/CraftingPopup" method="bodyExit"]
-[connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/RepairArea" method="bodyEntered"]
 [connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
+[connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/RepairArea" method="bodyEntered"]
 [connection signal="body_exited" from="ShipDisplay/RepairArea" to="ShipDisplay/CraftingPopup" method="bodyExit"]
 [connection signal="visibility_changed" from="PlayerUi/MarginContainer/CraftingUi/CraftableItems" to="PlayerUi/MarginContainer/CraftingUi" method="UpdateCraftables"]
 [connection signal="pressed" from="PlayerUi/MarginContainer/CraftingUi/CraftButton" to="PlayerUi/MarginContainer/CraftingUi" method="CraftButtonClicked"]

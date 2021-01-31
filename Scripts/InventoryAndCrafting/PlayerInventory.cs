@@ -89,6 +89,7 @@ public class PlayerInventory : Node
 		{
 			return false;
 		}
+
 		//Convert the dictionary into a list
 		List<int> convertedInventory = new List<int>();
 		foreach(KeyValuePair<int, int> item in inventory)
@@ -106,7 +107,7 @@ public class PlayerInventory : Node
 			{
 				RemoveItem(recipe[i], recipe[i - 1]);
 			}
-			AddItem(itemId, craftRef.AmountCreated(itemId));
+			AddItem(craftRef.AmountCreated(itemId),itemId);
 			return true;
 		}
 		else

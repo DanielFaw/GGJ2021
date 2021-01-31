@@ -135,7 +135,7 @@ public class Crafter : Node
 	}
 
 
-	public int[] CheckCraftingArray(List<int> playerInventory)
+	public int[] CheckCraftingArray()
 	{
 
 		PlayerInventory inv = (PlayerInventory)GetNode("/root/PlayerInventory");
@@ -155,7 +155,7 @@ public class Crafter : Node
 			craftableArray[i] = craftableItems[i];
 		}
 
-		GD.Print(" C# calculated " + craftableArray.Length + " craftable items");
+		//GD.Print(" C# calculated " + craftableArray.Length + " craftable items");
 		return craftableArray;
 		
 	}

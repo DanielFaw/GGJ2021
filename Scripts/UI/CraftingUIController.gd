@@ -23,9 +23,11 @@ func _ready():
 
 func ButtonClicked(var itemId):
 	currentlySelectedItem = itemId;
+	print("Selected " + str(itemId));
 
 func CraftButtonClicked():
 	if(currentlySelectedItem != null):
+		print("crafted " + str(currentlySelectedItem));
 		PlayerInventory.CraftItem(currentlySelectedItem);
 
 func UpdateCraftables():
@@ -35,19 +37,19 @@ func UpdateCraftables():
 		if(i != null):
 			i.queue_free();
 
-	var playerInventory = PlayerInventory.Inventory;
-	var itemsToCraft = Crafter.CheckCraftingArray(playerInventory);
+	var itemsToCraft = Crafter.CheckCraftingArray();
 
 	#print(" Craftable items:" + str(itemsToCraft.size()));
 	
 
 	for c in itemsToCraft:
+
 		var itemId = c;
 		print(str(itemId));
 		var newCraftable = CRAFTABLEITEMDISPLAY.instance();
 		var craftableItem = (newCraftable as CRAFTABLEITEMINFO);
 		craftableItems.add_child(newCraftable);
-		craftableItem.SetInfo(GlobalItemList.RetrieveItemName(c),itemId);
+		craftableItem.SetInfo(GlobalItemList.RetrieveItemName(c),c);
 		
 		#Selectable items
 		craftableItem.connect("buttonPressed",self,"ButtonClicked");
