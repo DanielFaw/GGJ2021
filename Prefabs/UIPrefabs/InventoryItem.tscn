@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://MiscArt/Fonts/Avara_Dynamic.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sprites/UI/Material_Background.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/UI/InventoryItem.gd" type="Script" id=3]
+[ext_resource path="res://sprites/radiationkrab2_back.png" type="Texture" id=4]
+
+[node name="InventoryItem" type="Control"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+patch_margin_left = 7
+patch_margin_top = 5
+patch_margin_right = 7
+patch_margin_bottom = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -23.2692
+margin_top = -24.213
+margin_right = 40.7308
+margin_bottom = 39.787
+rect_min_size = Vector2( 64, 64 )
+rect_scale = Vector2( 0.765706, 0.765706 )
+rect_clip_content = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "Just to limit Texture max size"
+}
+
+[node name="TextureDisplay" type="TextureRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 64 )
+rect_clip_content = true
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Amount" type="Label" parent="."]
+margin_left = 19.0447
+margin_top = 40.7079
+margin_right = 59.0447
+margin_bottom = 63.7079
+custom_fonts/font = ExtResource( 1 )
+text = "x01"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

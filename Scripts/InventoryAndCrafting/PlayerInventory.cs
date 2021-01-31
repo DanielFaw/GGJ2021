@@ -5,13 +5,18 @@ using System.Collections.Generic;
 public class PlayerInventory : Node
 {
 	Dictionary<int, int> inventory;
+
+	public Dictionary<int,int> Inventory{get =>inventory;}
 	Crafter craftRef;
+
+	[Signal]
+	public delegate void ItemUpdate(int itemId,int newAmount);
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		inventory = new Dictionary<int, int>();
-		craftRef = GetNode("../CrafterScript") as Crafter;
+		craftRef = GetNode("../Crafter") as Crafter;
 		//GD.Print("Inventory working!");
 		SetInventory();
 	}
@@ -21,6 +26,17 @@ public class PlayerInventory : Node
 //  {
 //      
 //  }
+
+
+	///Returns the amount of a specified item in the players inventory
+	public int GetAmountOfItem(int itemId)
+	{
+		if(inventory.ContainsKey(itemId))
+		{
+			return inventory[itemId];
+		}
+		return 0;
+	}
 
 	private void SetInventory()
 	{
@@ -46,6 +62,9 @@ public class PlayerInventory : Node
 		{
 			inventory.Add(itemId, itemAmount);
 		}
+
+		//Update Inventory UI
+		EmitSignal(nameof(ItemUpdate),itemId,inventory[itemId]);
 	}
 	
 	public void RemoveItem(int itemId, int itemAmount)
@@ -78,8 +97,7 @@ public class PlayerInventory : Node
 			convertedInventory.Add(item.Key);
 		}
 
-		//call the crafter script
-
+		//Call the crafter script
 		if(craftRef.CheckCrafting(itemId, convertedInventory))
 		{
 			//Craft dis item!

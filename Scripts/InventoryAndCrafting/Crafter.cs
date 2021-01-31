@@ -21,11 +21,6 @@ public class Crafter : Node
 		recipeDict = new Dictionary<int, List<int>>();
 		InitiateRecipes();
 	}
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 
 	private void InitiateRecipes()
 	{
@@ -60,9 +55,6 @@ public class Crafter : Node
 		AddRecipe(49, new List<int> { 1, 39, 1, 1 });
 		AddRecipe(50, new List<int> { 1, 40, 1, 1 });
 	}
-
-
-
 
 	//The formatted array must be as follows:
 		//[amountOfItem, itemID, amountOfItemN, ItemNId]
