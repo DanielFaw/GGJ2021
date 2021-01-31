@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 StateController="*res://Scripts/Global/StateController.gd"
 Utilities="*res://Scripts/Global/Utilities.gd"
+GlobalItemList="*res://Scripts/Global/ItemList.cs"
 
 [display]
 

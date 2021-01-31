@@ -36,7 +36,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138971, 0 )
 billboard = 2
 frames = ExtResource( 4 )
 animation = "back"
-frame = 2
 playing = true
 script = ExtResource( 6 )
 

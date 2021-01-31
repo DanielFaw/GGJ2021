@@ -7,11 +7,10 @@ public sealed class ItemList : Node
 	//Create static instance that can be referenced from anywhere else
 	public static ItemList Instance { get; } = new ItemList();
 	private ItemList() { }
-	Dictionary<int, ItemInfo> itemInfoDict;
+	Dictionary<int, ItemInfo> itemInfoDict = new Dictionary<int, ItemInfo>();
 
 	public override void _Ready()
 	{
-		itemInfoDict = new Dictionary<int, ItemInfo>();
 		//GD.Print("ItemList is ready!");
 		Directory itemLocation = new Directory();
 		itemLocation.Open("res://Prefabs/Items");
@@ -21,11 +20,10 @@ public sealed class ItemList : Node
 			if (itemLocation.FileExists(itemToSearch))
 			{
 				PackedScene myScene = (PackedScene)GD.Load("res://Prefabs/Items/" + itemToSearch);
-				ItemInfo infoLoaded = (ItemInfo)myScene.Instance().GetNode("IDScript");
+				ItemInfo infoLoaded = (ItemInfo)(myScene.Instance().GetNode("IDScript"));
 
-				//GD.Print(itemToSearch + " exists in the files");
+				GD.Print(itemToSearch + " exists in the files");
 				AddItem(infoLoaded);
-				
 			}
 		}
 
