@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Objects/WorldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
@@ -7,13 +7,11 @@
 [ext_resource path="res://Objects/Natures/Pine_1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/ShipParts/Ship_Broken.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/DirtObject.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Prefabs/UIPrefabs/InventoryItem.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Textures/Shadow.png" type="Texture" id=9]
 [ext_resource path="res://Prefabs/StaticFakeShadow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/ShipParts/Ship_Repaired.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Prefabs/UIPrefabs/ItemDisplay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://MiscArt/Fonts/Avara_Dynamic_Large.tres" type="DynamicFont" id=13]
-[ext_resource path="res://Prefabs/UIPrefabs/MaterialDisplay.tscn" type="PackedScene" id=14]
 [ext_resource path="res://sprites/UI/PopupBackground_Craft.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/UI/StartCrafting.gd" type="Script" id=16]
 [ext_resource path="res://Scripts/UI/CraftingUIController.gd" type="Script" id=17]
@@ -3487,6 +3485,7 @@ __meta__ = {
 }
 
 [node name="CraftingUi" type="Control" parent="PlayerUi/MarginContainer"]
+visible = false
 margin_right = 1004.0
 margin_bottom = 580.0
 script = ExtResource( 17 )
@@ -3500,78 +3499,6 @@ materialDict = {
 4: NodePath("Material List/VerticalLayout/VBoxContainer/Metal2"),
 5: NodePath("Material List/VerticalLayout/VBoxContainer/Meteorite")
 }
-
-[node name="Material List" type="Control" parent="PlayerUi/MarginContainer/CraftingUi"]
-visible = false
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = -10.0
-margin_top = -188.0
-margin_right = 155.0
-margin_bottom = 142.0
-rect_min_size = Vector2( 160, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VerticalLayout" type="VBoxContainer" parent="PlayerUi/MarginContainer/CraftingUi/Material List"]
-margin_left = 24.9734
-margin_right = 184.973
-margin_bottom = 394.0
-custom_constants/separation = -52
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="PlayerUi/MarginContainer/CraftingUi/Material List/VerticalLayout"]
-margin_right = 165.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
-custom_fonts/font = ExtResource( 13 )
-text = "Materials
-"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUi/MarginContainer/CraftingUi/Material List/VerticalLayout"]
-margin_top = 48.0
-margin_right = 165.0
-margin_bottom = 322.0
-custom_constants/separation = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Wood" parent="PlayerUi/MarginContainer/CraftingUi/Material List/VerticalLayout/VBoxContainer" instance=ExtResource( 14 )]
-margin_left = 0.0
-margin_right = 165.612
-
-[node name="Stone" parent="PlayerUi/MarginContainer/CraftingUi/Material List/VerticalLayout/VBoxContainer" instance=ExtResource( 14 )]
-margin_left = 0.0
-margin_top = 56.0
-margin_right = 165.612
-margin_bottom = 106.0
-
-[node name="Metal1" parent="PlayerUi/MarginContainer/CraftingUi/Material List/VerticalLayout/VBoxContainer" instance=ExtResource( 14 )]
-margin_left = 0.0
-margin_top = 112.0
-margin_right = 165.612
-margin_bottom = 162.0
-
-[node name="Metal2" parent="PlayerUi/MarginContainer/CraftingUi/Material List/VerticalLayout/VBoxContainer" instance=ExtResource( 14 )]
-margin_left = 0.0
-margin_top = 168.0
-margin_right = 165.612
-margin_bottom = 218.0
-
-[node name="Meteorite" parent="PlayerUi/MarginContainer/CraftingUi/Material List/VerticalLayout/VBoxContainer" instance=ExtResource( 14 )]
-margin_left = 0.0
-margin_top = 224.0
-margin_right = 165.612
-margin_bottom = 274.0
 
 [node name="CraftableItems" type="Control" parent="PlayerUi/MarginContainer/CraftingUi"]
 anchor_left = 1.0
@@ -3597,7 +3524,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="PlayerUi/MarginContainer/CraftingUi/CraftableItems/VBoxContainer"]
-margin_right = 184.0
+margin_right = 177.0
 margin_bottom = 31.0
 custom_fonts/font = ExtResource( 13 )
 text = "Items"
@@ -3606,7 +3533,7 @@ valign = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PlayerUi/MarginContainer/CraftingUi/CraftableItems/VBoxContainer"]
 margin_top = 35.0
-margin_right = 184.0
+margin_right = 177.0
 margin_bottom = 370.0
 rect_min_size = Vector2( 171, 335 )
 mouse_filter = 2
@@ -3621,26 +3548,22 @@ alignment = 1
 
 [node name="ItemDisplay6" parent="PlayerUi/MarginContainer/CraftingUi/CraftableItems/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 12 )]
 
-[node name="Inventory" type="Control" parent="PlayerUi/MarginContainer/CraftingUi"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -255.0
-margin_bottom = -64.0
+[node name="Inventory" type="Control" parent="PlayerUi/MarginContainer"]
+visible = false
+margin_right = 1004.0
+margin_bottom = 580.0
 script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="PlayerUi/MarginContainer/CraftingUi/Inventory"]
+[node name="GridContainer" type="GridContainer" parent="PlayerUi/MarginContainer/Inventory"]
 margin_right = 40.0
 margin_bottom = 40.0
 columns = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="InventoryItem" parent="PlayerUi/MarginContainer/CraftingUi/Inventory/GridContainer" instance=ExtResource( 8 )]
-visible = false
 [connection signal="body_entered" from="ShipDisplay/Area" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
 [connection signal="body_exited" from="ShipDisplay/Area" to="ShipDisplay/CraftingPopup" method="bodyExit"]
 [connection signal="visibility_changed" from="PlayerUi/MarginContainer/CraftingUi/CraftableItems" to="PlayerUi/MarginContainer/CraftingUi" method="UpdateCraftables"]

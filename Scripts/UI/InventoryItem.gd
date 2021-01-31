@@ -1,6 +1,5 @@
 extends Control
 
-var hasItem = false;
 var itemId;
 var label;
 var amount;
@@ -20,10 +19,8 @@ func SetInfo(var itemIdIN:int,var amountOfItem:int, var itemTexture:Texture):
 	itemId = itemIdIN;
 	UpdateAmount(amountOfItem);
 	textureDisplay.texture = itemTexture;
-	hasItem = true;
 
 func ClearData():
 	itemId = 0;
 	UpdateAmount(0);
 	textureDisplay.texture = null;
-	hasItem = true;

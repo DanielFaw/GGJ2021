@@ -16,14 +16,14 @@ func _ready():
 func _process(delta):
 
 	#Start Crafting
-	if(playerInCraftingArea && StateController.currentState == 1):
+	if(playerInCraftingArea && StateController.currentState == 0 ||StateController.currentState == 1):
 		if(Input.is_action_just_pressed("player_interact")):
-			StateController.ChangeState(0);
+			StateController.ChangeState(2);
 
 	#Stop Crafting
-	elif(playerInCraftingArea && StateController.currentState ==0):
+	elif(playerInCraftingArea && StateController.currentState ==2):
 		if(Input.is_action_just_pressed("player_interact") || Input.is_action_just_pressed("ui_cancel")):
-			StateController.ChangeState(1);
+			StateController.ChangeState(0);
 		pass;
 
 

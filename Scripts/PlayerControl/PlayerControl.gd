@@ -47,7 +47,6 @@ func _ready():
 func _process(delta):
 
 	Utilities.CorrectJitter(delta,direction,visObject,self);
-
 	if(enabled):
 		#if(direction == Vector3.ZERO):
 		#	#Match hands with camera
@@ -98,7 +97,7 @@ func HandleMovementCalculations(delta):
 	velocity.y -= delta * gravity;
 
 	if(is_on_floor()):
-		velocity.y = -0.1;
+		velocity.y = -0.2;
 		if(queueJump):
 			velocity.y = jumpPower;
 			queueJump = false;

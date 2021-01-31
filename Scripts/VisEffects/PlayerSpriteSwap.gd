@@ -6,7 +6,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(StateController.currentState == 1):
+	if(StateController.currentState == 2):
 		if(Input.is_action_pressed("player_move_forward")):
 			animation = "front"
 			flip_h = false;
