@@ -36,6 +36,8 @@ func _process(delta):
 	elif(!Input.is_action_pressed("player_fire_left") && currentResource != null):
 		currentResource.StopMining();
 
+
+#TODO - Add weapon Durability
 func TakeDamage():
 	print("Laser Took damage!");
 
@@ -50,7 +52,7 @@ func BodyEnter(var body):
 	if((parent as RESOURCE) != null && currentResource == null):
 		currentResource = (parent as RESOURCE);
 		currentResource.connect("ResourceMined",self,"TakeDamage");
-		currentResource.connect("ResourceDepleted",self,"ResourcedDestroyed");
+		currentResource.connect("tree_exiting",self,"ResourcedDestroyed");
 		if(previousResource == null):
 			previousResource = currentResource;
 	pass;
@@ -61,7 +63,6 @@ func BodyExit(var body):
 
 		#No longer take damage when "mining" this resource
 		currentResource.disconnect("ResourceMined",self,"TakeDamage");
-		currentResource.disconnect("ResourceDepleted",self,"ResourcedDestroyed");
 		previousResource = currentResource;
 		currentResource = null;
 	pass;
