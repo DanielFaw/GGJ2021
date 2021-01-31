@@ -8,7 +8,11 @@
 [ext_resource path="res://Scripts/VisEffects/PlayerSpriteSwap.gd" type="Script" id=6]
 [ext_resource path="res://Models/WeaponsAndTools/MiningLaser.glb" type="PackedScene" id=7]
 [ext_resource path="res://Materials/PAL_MASTER_Gradient.tres" type="Material" id=8]
+<<<<<<< HEAD
 [ext_resource path="res://Scripts/InventoryAndCrafting/PlayerInventory.cs" type="Script" id=9]
+=======
+[ext_resource path="res://Prefabs/Tools/StoneLaser.tscn" type="PackedScene" id=9]
+>>>>>>> abb12390ce22e764754f258c35447f844e4020ef
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.193086
@@ -59,16 +63,14 @@ disappearDist = 0.9
 [node name="Hands" type="Spatial" parent="_VIS"]
 
 [node name="LeftHand" type="Spatial" parent="_VIS/Hands"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0468651, -0.0347708, -0.151801 )
+transform = Transform( -4.75838e-08, 0, 1.08859, 0, 1.08859, 0, -1.08859, 0, -4.75838e-08, -0.122804, -0.0331389, -0.00333131 )
 
-[node name="MiningLaser" parent="_VIS/Hands/LeftHand" instance=ExtResource( 7 )]
-transform = Transform( -2.5564e-09, 0, 0.0584837, 0, 0.0584837, 0, -0.0584837, 0, -2.5564e-09, -0.156937, 0, 0.150765 )
-
-[node name="Cylinder" parent="_VIS/Hands/LeftHand/MiningLaser" index="0"]
-material/0 = ExtResource( 8 )
+[node name="MiningLaser" parent="_VIS/Hands/LeftHand" instance=ExtResource( 9 )]
+transform = Transform( 0.144115, 0, 0, 0, 0.144115, 0, 0, 0, 0.144115, 0, 0, 0 )
 
 [node name="RightHand" type="Spatial" parent="_VIS/Hands"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10579, -0.0355268, 8.32975e-06 )
+visible = false
 
 [node name="MiningLaser2" parent="_VIS/Hands/RightHand" instance=ExtResource( 7 )]
 transform = Transform( -2.5564e-09, 0, 0.0584837, 0, 0.0584837, 0, -0.0584837, 0, -2.5564e-09, 0, 0, 0 )
