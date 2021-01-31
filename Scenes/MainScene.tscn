@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Objects/WorldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Textures/Shadow.png" type="Texture" id=9]
 [ext_resource path="res://Prefabs/StaticFakeShadow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/ShipParts/Ship_Repaired.tscn" type="PackedScene" id=11]
+[ext_resource path="res://UI/ButtonStyle_Pressed.tres" type="StyleBox" id=12]
 [ext_resource path="res://MiscArt/Fonts/Avara_Dynamic_Large.tres" type="DynamicFont" id=13]
 [ext_resource path="res://sprites/UI/PopupBackground.png" type="Texture" id=14]
 [ext_resource path="res://sprites/UI/PopupBackground_Craft.png" type="Texture" id=15]
@@ -21,6 +22,7 @@
 [ext_resource path="res://MiscArt/Fonts/Avara_Dynamic.tres" type="DynamicFont" id=20]
 [ext_resource path="res://sprites/UI/PopupBackground_Repair.png" type="Texture" id=21]
 [ext_resource path="res://Scripts/Progression/ShipRepair.gd" type="Script" id=22]
+[ext_resource path="res://UI/ButtonStyle.tres" type="StyleBox" id=23]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -3515,6 +3517,7 @@ texture = ExtResource( 15 )
 [node name="PlayerUi" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3526,28 +3529,30 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CraftingUi" type="Control" parent="PlayerUi/MarginContainer"]
-visible = false
 margin_right = 1004.0
 margin_bottom = 580.0
+mouse_filter = 2
 script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+craftableItemsPath = NodePath("CraftableItems/VBoxContainer/ScrollContainer/VBoxContainer")
 
 [node name="CraftableItems" type="Control" parent="PlayerUi/MarginContainer/CraftingUi"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -190.0
-margin_top = -172.0
-margin_right = -13.0
-margin_bottom = 161.0
+margin_left = -177.0
+margin_top = -166.5
+margin_bottom = 166.5
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3557,13 +3562,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 2.0
 rect_min_size = Vector2( 171, 335 )
-mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="PlayerUi/MarginContainer/CraftingUi/CraftableItems/VBoxContainer"]
-margin_right = 184.0
+margin_right = 177.0
 margin_bottom = 31.0
 custom_fonts/font = ExtResource( 13 )
 text = "Items"
@@ -3572,21 +3576,49 @@ valign = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PlayerUi/MarginContainer/CraftingUi/CraftableItems/VBoxContainer"]
 margin_top = 35.0
-margin_right = 184.0
+margin_right = 177.0
 margin_bottom = 370.0
 rect_min_size = Vector2( 171, 335 )
 mouse_filter = 2
+follow_focus = true
 scroll_horizontal_enabled = false
 scroll_horizontal = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerUi/MarginContainer/CraftingUi/CraftableItems/VBoxContainer/ScrollContainer"]
-mouse_filter = 2
 alignment = 1
 
+[node name="CraftButton" type="Button" parent="PlayerUi/MarginContainer/CraftingUi"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -117.5
+margin_top = -51.0
+margin_right = 117.5
+custom_styles/hover = ExtResource( 23 )
+custom_styles/pressed = ExtResource( 12 )
+custom_styles/focus = ExtResource( 23 )
+custom_styles/normal = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PlayerUi/MarginContainer/CraftingUi/CraftButton"]
+margin_right = 236.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 13 )
+text = "Craft!"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Inventory" type="Control" parent="PlayerUi/MarginContainer"]
-visible = false
 margin_right = 1004.0
 margin_bottom = 580.0
+mouse_filter = 2
 script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3594,8 +3626,9 @@ __meta__ = {
 descriptionPath = NodePath("../../ItemDescription")
 
 [node name="GridContainer" type="GridContainer" parent="PlayerUi/MarginContainer/Inventory"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 437.0
+margin_bottom = 484.0
+mouse_filter = 2
 columns = 7
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3604,6 +3637,7 @@ __meta__ = {
 [node name="ItemDescription" type="Control" parent="PlayerUi"]
 margin_right = 215.0
 margin_bottom = 71.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3669,10 +3703,11 @@ __meta__ = {
 }
 [connection signal="body_entered" from="ShipDisplay/Area" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
 [connection signal="body_exited" from="ShipDisplay/Area" to="ShipDisplay/CraftingPopup" method="bodyExit"]
-[connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
 [connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/RepairArea" method="bodyEntered"]
+[connection signal="body_entered" from="ShipDisplay/RepairArea" to="ShipDisplay/CraftingPopup" method="bodyEntered"]
 [connection signal="body_exited" from="ShipDisplay/RepairArea" to="ShipDisplay/CraftingPopup" method="bodyExit"]
 [connection signal="visibility_changed" from="PlayerUi/MarginContainer/CraftingUi/CraftableItems" to="PlayerUi/MarginContainer/CraftingUi" method="UpdateCraftables"]
+[connection signal="pressed" from="PlayerUi/MarginContainer/CraftingUi/CraftButton" to="PlayerUi/MarginContainer/CraftingUi" method="CraftButtonClicked"]
 
 [editable path="World"]
 
