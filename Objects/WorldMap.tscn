@@ -22,6 +22,8 @@ layers = 4
 
 [node name="Grass_MULTI" type="MultiMeshInstance" parent="."]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 6.91575, 0 )
+layers = 2
+material_override = ExtResource( 2 )
 multimesh = SubResource( 1 )
 
 [node name="GroundCol" type="MeshInstance" parent="."]
