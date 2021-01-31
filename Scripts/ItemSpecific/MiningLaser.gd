@@ -11,20 +11,18 @@ var beamEffectObject;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	beamEffectObject = $Beam
 	pass # Replace with function body.
 
 
 func _process(delta):
-
-
 	#Beam effect
 	if(currentResource != null && currentResource.isMining):
 		beamEffectObject.visible = true;
 	else:
 		beamEffectObject.visible = false;
 
-	if(Input.is_action_just_pressed("player_fire_right")):
+	if(Input.is_action_just_pressed("player_fire_left")):
 		if(currentResource != null):
 			#Start mining the resource
 			currentResource.MineResource(miningPower);
@@ -35,7 +33,7 @@ func _process(delta):
 					previousResource.StopMining();
 					pass;
 
-	elif(!Input.is_action_pressed("player_fire_right") && currentResource != null):
+	elif(!Input.is_action_pressed("player_fire_left") && currentResource != null):
 		currentResource.StopMining();
 
 func TakeDamage():
